@@ -138,3 +138,4 @@ cp $dir_script/.xinitrc $dir_root/home/$hostname/
 cp -r $dir_script/xfce4 $dir_root/home/$hostname/.config/
 cp -r "$dir_script/Code - OSS" $dir_root/home/$hostname/.config/
 cp -r $dir_script/nano $dir_root/home/$hostname/.config/
+cp $dir_script/.bashrc $dir_root/home/$hostname/
