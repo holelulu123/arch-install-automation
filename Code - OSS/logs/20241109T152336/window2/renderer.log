@@ -1,0 +1,23 @@
+2024-11-09 15:23:51.846 [info] Started local extension host with pid 1198.
+2024-11-09 15:23:54.570 [info] [perf] Render performance baseline is 43ms
+2024-11-09 15:24:12.685 [error] [network] #2: https://open-vsx.org/vscode/gallery/extensionquery - error POST Canceled
+2024-11-09 15:25:00.377 [error] Extension 'ms-python.python CANNOT USE these API proposals 'contribEditorContentMenu, quickPickSortByLabel, testObserver, quickPickItemTooltip, terminalDataWriteEvent, terminalExecuteCommandEvent, contribIssueReporter, codeActionAI, notebookReplDocument, notebookVariableProvider'. You MUST start in extension development mode or use the --enable-proposed-api command line flag
+2024-11-09 15:25:00.377 [error] Extension 'ms-python.debugpy CANNOT USE these API proposals 'portsAttributes, contribIssueReporter, debugVisualization, contribViewsWelcome'. You MUST start in extension development mode or use the --enable-proposed-api command line flag
+2024-11-09 15:25:00.389 [error] [ms-python.debugpy]: issue/reporter is a proposed menu identifier. It requires 'package.json#enabledApiProposals: ["contribIssueReporter"]' and is only available when running out of dev or with the following command line switch: --enable-proposed-api ms-python.debugpy
+2024-11-09 15:25:00.389 [error] [ms-python.python]: issue/reporter is a proposed menu identifier. It requires 'package.json#enabledApiProposals: ["contribIssueReporter"]' and is only available when running out of dev or with the following command line switch: --enable-proposed-api ms-python.python
+2024-11-09 15:25:00.389 [error] [ms-python.python]: editor/content is a proposed menu identifier. It requires 'package.json#enabledApiProposals: ["contribEditorContentMenu"]' and is only available when running out of dev or with the following command line switch: --enable-proposed-api ms-python.python
+2024-11-09 15:25:01.126 [error] spawn /home/holelulu/.vscode-oss/extensions/ms-python.python-2024.18.0-universal/python-env-tools/bin/pet ENOENT: Error: spawn /home/holelulu/.vscode-oss/extensions/ms-python.python-2024.18.0-universal/python-env-tools/bin/pet ENOENT
+	at ChildProcess._handle.onexit (node:internal/child_process:286:19)
+	at onErrorNT (node:internal/child_process:484:16)
+	at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+2024-11-09 15:25:12.035 [error] AbstractContextKeyService has been disposed: Error: AbstractContextKeyService has been disposed
+    at Las.contextMatchesRules (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:1316:56485)
+    at Uj.createActionGroups (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:408:106563)
+    at jie.getActions (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:408:108717)
+    at rr (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:408:97021)
+    at g (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:408:112917)
+    at vZ.value (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:408:113199)
+    at FSe.B (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:30:747)
+    at FSe.fire (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:30:965)
+    at FSe.resume (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:30:1999)
+    at vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:30:2276
