@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Variables
-drive='/dev/sdc' # The device you want to install the arch on
-dir_script='/mnt/build'
+drive='/dev/sdX' # The device you want to install the arch on
+dir_script='/mnt/build/arch' # The location that the scripts and files exists
 hostname='holelulu'
 user='holelulu'
 
@@ -24,14 +24,14 @@ parted $drive --script mkpart primary 1MiB 11MiB
 parted $drive --script set 1 bios_grub on
 parted $drive --script mkpart primary fat32 11MiB 511MiB
 parted $drive --script set 2 esp on
-parted $drive --script mkpart primary ext4 511MiB 100%
+parted $drive --script mkpart primary xfs 511MiB 100%
 
 # FAT32 for Partition 2
 mkfs.fat -F32 $drive_part2
 echo "Formatting complete for $drive_part2 as FAT32."
 
 # ext4 For Partition 3
-mkfs.ext4 $drive_part3
+mkfs.xfs $drive_part3
 echo "Formatting complete for $drive_part3 as ext4."
 
 # Mount the Neccesary patitions
@@ -57,7 +57,8 @@ echo "Saved fstab into a file"
 mount --bind /dev "$dir_root/dev"
 mount --bind /proc "$dir_root/proc"
 mount --bind /sys "$dir_root/sys"
-echo "Binding Finished...."
+mount --bind /run "$dir_root/run"
+#echo "Binding Finished...."
 
 echo "Starting To Make command in chroot....."
 # Zone
@@ -139,3 +140,6 @@ cp -r $dir_script/xfce4 $dir_root/home/$hostname/.config/
 cp -r "$dir_script/Code - OSS" $dir_root/home/$hostname/.config/
 cp -r $dir_script/nano $dir_root/home/$hostname/.config/
 cp $dir_script/.bashrc $dir_root/home/$hostname/
+
+umount --recursive $dir_root
+echo "umount all drives...."
