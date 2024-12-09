@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -e
+set -x
+
 # Variables
 drive='/dev/sdX' # The device you want to install the arch on
 dir_script='/mnt/build/arch' # The location that the scripts and files exists
@@ -135,11 +138,10 @@ ln -s /dev/null $dir_root/etc/udev/rules.d/80-net-setup-link.rules
 echo "Installing The Neccesary packages"
 pacstrap $dir_root $(cat $dir_script/packages.txt)
 
-cp $dir_script/.xinitrc $dir_root/home/$hostname/
-cp -r $dir_script/xfce4 $dir_root/home/$hostname/.config/
-cp -r "$dir_script/Code - OSS" $dir_root/home/$hostname/.config/
+cp $dir_script/xinitrc $dir_root/home/$hostname/.xinitrc
+cp -r $dir_script/xfce4 $dir_root/home/$hostname/.config/xfce4
 cp -r $dir_script/nano $dir_root/home/$hostname/.config/
-cp $dir_script/.bashrc $dir_root/home/$hostname/
+cp $dir_script/bashrc $dir_root/home/$hostname/.bashrc
 
 umount --recursive $dir_root
 echo "umount all drives...."
