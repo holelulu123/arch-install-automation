@@ -32,11 +32,9 @@ mkfs.xfs $drive_part3
 
 # Mount the Neccesary patitions
 mkdir -p $dir_root
-
 mount $drive_part3 $dir_root
 
 mkdir $dir_boot
-
 mount $drive_part2 $dir_boot
 # Install Linux
 pacstrap $dir_root linux linux-firmware base nano
@@ -99,7 +97,7 @@ mkdir -p $dir_root/etc/systemd/journald.conf.d
 cp $dir_script/10-volatile.conf $dir_root/etc/systemd/journald.conf.d/
 
 # Microcode
-pacstrap $dir_root and-ucode intel-ucode
+pacstrap $dir_root amd-ucode intel-ucode
 chroot $dir_root mkinitcpio -P
 
 ln -s /dev/null $dir_root/etc/udev/rules.d/80-net-setup-link.rules
