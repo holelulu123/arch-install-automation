@@ -1,0 +1,13 @@
+# Compiler
+CXX = g++
+
+# Compiler flags
+CXXFLAGS = -Wall -g
+
+# Target executable
+TARGET = main
+
+# Source files
+SRCS = src/apple.cpp src/snake.cpp src/tile.cpp
+
+# Object files

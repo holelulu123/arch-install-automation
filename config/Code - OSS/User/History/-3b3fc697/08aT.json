@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.tcc": "cpp",
+        "format": "cpp",
+        "thread": "cpp"
+    }
+}

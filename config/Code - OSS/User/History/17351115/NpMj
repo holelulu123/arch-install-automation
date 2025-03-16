@@ -1,0 +1,12 @@
+*.pyc
+*.html
+*.log
+*.logs
+logs/
+/logs
+/__pycache__
+venv/
+samples/
+mock/
+/.vscode
+.env

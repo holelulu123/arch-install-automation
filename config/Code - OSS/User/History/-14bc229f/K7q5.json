@@ -1,0 +1,13 @@
+{
+    "configurations": [
+        {
+            "name": "STM32",
+            "includePath": [
+                "Core/Inc",
+                "Core/Drivers",
+                "/usr/arm-none-eabi/include/"
+            ]
+        }
+    ],
+    "version": 4
+}

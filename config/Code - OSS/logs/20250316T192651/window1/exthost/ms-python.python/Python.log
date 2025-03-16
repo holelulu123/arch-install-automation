@@ -1,0 +1,111 @@
+2025-03-16 19:29:58.211 [warning] Dir "/home/holelulu/projects/analog_video/.pixi/envs" is not watchable (directory does not exist)
+2025-03-16 19:29:58.211 [error] Unable to check if shell integration is active [Error: Extension 'ms-python.python' CANNOT use API proposal: terminalDataWriteEvent.
+Its package.json#enabledApiProposals-property declares:  but NOT terminalDataWriteEvent.
+ The missing proposal MUST be added and you must start in extension development mode or use the following command line switch: --enable-proposed-api ms-python.python
+	at N (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:106:19035)
+	at a.onDidWriteTerminalData (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:172:46304)
+	at new v (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:877941)
+	at ge (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1684578)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687942
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687970
+	at Se (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688037)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688517
+	at we (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688458)
+	at Pe (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688492)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1685731
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687336
+	at Array.reduce (<anonymous>)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687308
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687590
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687970
+	at Se (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688037)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688517
+	at we (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688458)
+	at Pe (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688492)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1685731
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1715401
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1715422
+	at e._get (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1714435)
+	at e._getButThrowIfAsync (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1714495)
+	at e.get (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1710204)
+	at e.dynamicValue (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1699937)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1686114
+	at Ee (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1686370)
+	at Se (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688086)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688517
+	at we (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688458)
+	at Pe (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688492)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1685731
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1685665
+	at Array.map (<anonymous>)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1685636
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687336
+	at Array.reduce (<anonymous>)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687308
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687590
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687970
+	at Se (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688037)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688517
+	at we (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688458)
+	at Pe (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688492)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1685731
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1715401
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1715422
+	at e._get (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1714435)
+	at e._getButThrowIfAsync (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1714495)
+	at e.get (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1710204)
+	at a.get (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:536568)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:451405
+	at async t.activateComponents (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:449685)
+	at async /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2639568
+	at async e (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2639100)
+	at async pw.n (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:112:13415)
+	at async pw.m (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:112:13378)
+	at async pw.l (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:112:12834)]
+2025-03-16 19:29:58.211 [info] Starting Environment refresh
+2025-03-16 19:29:58.211 [info] Starting Environment refresh
+2025-03-16 19:29:58.211 [info] VS Code was launched from an activated environment: 'venv', selecting it as the interpreter for workspace.
+2025-03-16 19:29:58.211 [info] > hatch env show --json
+2025-03-16 19:29:58.211 [info] cwd: .
+2025-03-16 19:29:58.211 [info] Active interpreter [/home/holelulu/projects/analog_video]:  /home/holelulu/projects/analog_video/venv/bin/python
+2025-03-16 19:29:58.246 [info] > ./venv/bin/python -I ~/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/python_files/get_output_via_markers.py ~/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/python_files/interpreterInfo.py
+2025-03-16 19:29:58.247 [info] Environments refresh paths discovered: 200 milliseconds
+2025-03-16 19:29:58.247 [info] Environments refresh paths discovered: 202 milliseconds
+2025-03-16 19:29:58.327 [info] Environments refresh finished (event): 279 milliseconds
+2025-03-16 19:29:58.327 [info] Environments refresh finished (event): 282 milliseconds
+2025-03-16 19:29:58.330 [info] Python interpreter path: ./venv/bin/python
+2025-03-16 19:29:58.333 [info] Environment refresh took 286 milliseconds
+2025-03-16 19:29:58.334 [info] Environment refresh took 291 milliseconds
+2025-03-16 19:29:58.341 [info] > pyenv which python
+2025-03-16 19:29:58.341 [info] cwd: .
+2025-03-16 19:29:58.365 [error] [
+  'Failed to activate a workspace, Class name = v, completed in 324ms, has a falsy return value, Arg 1: <Uri:/home/holelulu/projects/analog_video/analog_video.py>, Arg 2: {"started":1742153397955}, Return Value: undefined',
+  [Error: Extension 'ms-python.python' CANNOT use API proposal: testObserver.
+  Its package.json#enabledApiProposals-property declares:  but NOT testObserver.
+   The missing proposal MUST be added and you must start in extension development mode or use the following command line switch: --enable-proposed-api ms-python.python
+  	at N (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:106:19035)
+  	at get testResults (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:172:39547)
+  	at C.activate (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:908493)
+  	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2457
+  	at Array.map (<anonymous>)
+  	at v.activateWorkspace (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2447)]
+]
+2025-03-16 19:29:58.367 [error] Failure during activation. [Error: Extension 'ms-python.python' CANNOT use API proposal: testObserver.
+Its package.json#enabledApiProposals-property declares:  but NOT testObserver.
+ The missing proposal MUST be added and you must start in extension development mode or use the following command line switch: --enable-proposed-api ms-python.python
+	at N (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:106:19035)
+	at get testResults (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:172:39547)
+	at C.activate (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:908493)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2457
+	at Array.map (<anonymous>)
+	at v.activateWorkspace (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2447)]
+2025-03-16 19:29:58.367 [error] sendStartupTelemetry() failed. [Error: Extension 'ms-python.python' CANNOT use API proposal: testObserver.
+Its package.json#enabledApiProposals-property declares:  but NOT testObserver.
+ The missing proposal MUST be added and you must start in extension development mode or use the following command line switch: --enable-proposed-api ms-python.python
+	at N (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:106:19035)
+	at get testResults (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:172:39547)
+	at C.activate (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:908493)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2457
+	at Array.map (<anonymous>)
+	at v.activateWorkspace (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2447)]
+2025-03-16 19:29:59.778 [info] Starting Jedi language server for analog_video.

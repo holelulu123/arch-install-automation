@@ -1,0 +1,46 @@
+CC = arm-none-eabi-gcc
+AS = arm-none-eabi-as 
+LD = arm-none-eabi-ld
+OBJCOPY = arm-none-eabi-objcopy
+
+# Startup dir
+STARTUPDIR = /home/holelulu/Documents/stm32l1/STM32CubeL0/Drivers/CMSIS/Device/ST/STM32L0xx/Source/Templates/gcc
+STARTUP_SRC = $(STARTUPDIR)/startup_stm32l072xx.s
+# Include Paths
+INCDIR += /home/holelulu/Documents/stm32l1/STM32CubeL0/Drivers/CMSIS/Include 
+INCDIR += /home/holelulu/Documents/stm32l1/STM32CubeL0/Drivers/CMSIS/Device/ST/STM32L0xx/Include
+# INCDIR += -I/usr/arm-none-eabi/include
+# INCDIR += -I/usr/lib/gcc/arm-none-eabi/14.2.0/include
+
+# Library path 
+LIBDIR += /home/holelulu/Documents/stm32l1/STM32CubeL0/Drivers/CMSIS/Lib/GCC
+# Build Path
+BUILDDIR = build
+
+# Source File
+SRCS = src/bit_test.c
+OBJS = $(BUILDDIR)/bit_test.o $(BUILDDIR)/startup.o
+
+CFLAGS = -mcpu=cortex-m0plus -mthumb -Wall $(addprefix -I, $(INCDIR))
+LDFLAGS = -T linker/STM32L073RZTx_FLASH.ld -nostartfiles
+
+$(BUILDDIR):
+	mkdir -p $(BUILDDIR)
+
+$(BUILDDIR)/bit_test.o: src/bit_test.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILDDIR)/startup.o: $(STARTUP_SRC)
+	$(AS) -mcpu=cortex-m0plus $< -o $@
+
+$(BUILDDIR)/firmware.elf: $(OBJ)
+	$(CC) $(OBJ) $(LDFLAGS) -o $@
+
+$(BUILDDIR)/firmware.bin: $(BUILDDIR)/firmware.elf
+	$(OBJCOPY) -O binary $< $@
+
+flash: $(BUILDDIR)/firmware.bin
+	st-flash write $< 0x08000000
+
+clean:
+	rm -rf $(BUILDDIR)/*.o $(BUILDDIR)/*.elf $(BUILDDIR)/*.bin

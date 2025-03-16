@@ -1,0 +1,12 @@
+{"timestamp":88285,"category":"session_restore","name":"backup_can_be_loaded_session_file","extra":{"can_load":"true","glean_timestamp":"1742161334613","path_key":"clean","loadfail_reason":"N/A"}}
+{"timestamp":88285,"category":"session_restore","name":"backup_can_be_loaded_session_file","extra":{"glean_timestamp":"1742161334613","path_key":"clean","loadfail_reason":"N/A","can_load":"true"}}
+{"timestamp":88286,"category":"session_restore","name":"shutdown_success_session_startup","extra":{"glean_timestamp":"1742161334614","shutdown_reason":"N/A","shutdown_ok":"false"}}
+{"timestamp":88774,"category":"webcompatreporting","name":"reason_dropdown","extra":{"setting":"required","glean_timestamp":"1742161335102"}}
+{"timestamp":88974,"category":"jsonfile","name":"load_autofillprofiles","extra":{"value":"","glean_timestamp":"1742161335302"}}
+{"timestamp":89103,"category":"doh","name":"state_rollback","extra":{"value":"null","glean_timestamp":"1742161335431"}}
+{"timestamp":89396,"category":"normandy","name":"validation_failed_nimbus_experiment","extra":{"feature":"addAnImageInPDF","value":"add-an-image-to-pdf-with-alt-text-rollout","glean_timestamp":"1742161335724","reason":"invalid-feature"}}
+{"timestamp":89396,"category":"nimbus_events","name":"validation_failed","extra":{"reason":"invalid-feature","glean_timestamp":"1742161335724","experiment":"add-an-image-to-pdf-with-alt-text-rollout","feature":"addAnImageInPDF"}}
+{"timestamp":89397,"category":"nimbus_events","name":"is_ready","extra":{"glean_timestamp":"1742161335724"}}
+{"timestamp":89480,"category":"jsonfile","name":"load_logins","extra":{"glean_timestamp":"1742161335808","value":""}}
+{"timestamp":89483,"category":"upgrade_dialog","name":"trigger_reason","extra":{"value":"not-major","glean_timestamp":"1742161335810"}}
+{"timestamp":100671,"category":"urlbar","name":"engagement","extra":{"n_words":"1","glean_timestamp":"1742161346998","search_engine_default_id":"google-b-d","sap":"urlbar_newtab","selected_result":"autofill_origin","groups":"heuristic,search_suggest_rich,search_suggest,search_suggest,search_suggest,search_suggest,search_suggest,general,general,general","interaction":"typed","search_mode":"","results":"autofill_origin,search_suggest_rich,search_suggest,search_suggest,search_suggest,search_suggest,search_suggest,history,history,history","provider":"Autofill","n_chars":"5","engagement_type":"enter","selected_position":"1","actions":"none,none,none,none,none,none,none,none,none,none","n_results":"10"}}

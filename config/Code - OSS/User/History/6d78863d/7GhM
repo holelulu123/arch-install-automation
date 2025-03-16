@@ -1,0 +1,110 @@
+# Compiler and Tools
+TOOLCHAIN = /usr
+CC = $(TOOLCHAIN)/bin/arm-none-eabi-gcc
+AS = $(TOOLCHAIN)/bin/arm-none-eabi-as 
+LD = $(TOOLCHAIN)/bin/arm-none-eabi-ld
+OC = $(TOOLCHAIN)/bin/arm-none-eabi-objcopy
+
+# Define Build Path
+BUILD_DIR = build
+
+# Define Target Path
+TARGET = $(BUILD_DIR)/test
+
+# Define the linker script location
+LD_SCRIPT = $(shell find ./Core/Startup -name '*.ld')
+
+# Define startup Path
+STARTUP = $(shell find ./Core/Startup -name '*.s')
+
+# Define Header files - find all the .h files 
+INCDIR = $(shell find ./Core/Inc -name '*.h')
+
+# Define Source Files - find all the .c files
+SRCS = $(shell find ./Core/Src -name '*.c')
+
+# Define the chip architecture 
+MCU_SPEC = cortex-m0plus
+
+#  -DSTM32L072xx
+INC_DIRS_FLAG = $(addprefix -I, $(INCDIR))
+
+# Assembly directives.
+ASFLAGS += -mcpu=$(MCU_SPEC) 
+ASFLAGS += -mthumb 
+ASFLASG += -Wall 
+ASFLASG += -c 
+ASFLASG += -Og 
+ASFLASG += -fmessage-length=0
+
+# C and C++ compilation directives
+CPPFLAGS += -mcpu=$(MCU_SPEC)
+CPPFLAGS += -mthumb
+CPPFLAGS += -march=armv7e-m
+CPPFLAGS += -mfloat-abi=hard
+CPPFLAGS += -Wall
+CPPFLAGS += -g3
+CPPFLAGS += -Og
+CPPFLAGS += -fmessage-length=0 -fno-common
+CPPFLAGS += -ffunction-sections -fdata-sections
+CPPFLAGS += -fno-exceptions
+CPPFLAGS += -fno-rtti
+CPPFLAGS += -std=c++11
+CPPFLAGS += $(INC_DIRS_FLAG)
+
+# Linker directives.
+LSCRIPT = $(LD_SCRIPT)
+LFLAGS += -mcpu=$(MCU_SPEC)
+LFLAGS += -mthumb
+LFLAGS += -mfloat-abi=hard
+LFLAGS += -Wall
+LFLAGS += -march=armv7e-m
+LFLAGS += --static
+LFLAGS += --specs=nosys.specs
+LFLAGS += -Wl,-Map=$(TARGET).map
+LFLAGS += -lgcc
+LFLAGS += -Wl,--gc-sections
+LFLAGS += -Wl,--print-memory-usage
+LFLAGS += -Wl,-L./ld
+LFLAGS += -lc
+LFLAGS += -nostartfiles
+LFLAGS += -T$(LSCRIPT)
+
+
+ifneq ($(STARTUP),)
+	OBJS += $(addprefix $(BUILD_DIR)/, $(STARTUP:.s=.o))
+endif
+
+
+.PHONY: all clean flash FORCE
+
+all: $(BUILD_DIR)/firmware.bin
+
+# Compile main source file
+$(BUILD_DIR)/main.o: $(SRCS)/main.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/system_stm32l0xx.o: $(SRCS)/system_stm32l0xx.c 
+	$(CC) $(CFLAGS) -c $< -o $@
+
+
+# Compile startup assembly file
+$(BUILD_DIR)/startup.o: $(STARTUPDIR)/startup_stm32l072xx.s | $(BUILD_DIR)
+	$(CC) -x assembler-with-cpp -c $< -o $@
+
+# Link all object files
+$(BUILD_DIR)/firmware.elf: $(OBJS)
+	$(CC) $(OBJS) $(LDFLAGS) -o $@
+
+# Convert ELF to Binary
+$(BUILD_DIR)/firmware.bin: $(BUILD_DIR)/firmware.elf
+	$(OC) -O binary $< $@
+
+# Flash the binary to the STM32
+flash: $(BUILD_DIR)/firmware.bin
+	st-flash write $< 0x08000000
+
+# Clean the build directory
+clean:
+	rm -rf $(BUILD_DIR)
+	mkdir -p $(BUILD_DIR)

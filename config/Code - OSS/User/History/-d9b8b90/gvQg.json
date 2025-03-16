@@ -1,0 +1,21 @@
+{
+  "configurations": [
+    {
+      "name": "linux-gcc-x64",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "/usr/include/qt",
+        "/usr/include/qt/QtGui",
+        "/usr/include/qt/QtCore",
+        "/usr/include/qt/QtWidgets"
+
+      ],
+      "defines": [],
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "${default}",
+      "cppStandard": "${default}",
+      "intelliSenseMode": "linux-gcc-x64"
+    }
+  ],
+  "version": 4
+}

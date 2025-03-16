@@ -1,0 +1,21 @@
+CXX = g++
+CXXFLAGS = -Wall -g
+
+TARGET = main
+
+all: build/main
+
+build/main: build/main.o build/random_utils.o
+	$(CC) $^ -o $@
+
+build/main.o: src/main.c
+	$(CC) -c $^ -o $@
+
+build/snake: src/snake.c
+	$(CC) -c $^ -o $@
+
+build/snake.o: src/m/random_utils.c
+	$(CC) -c $^ -o $@
+
+clean:
+	rm -f build/*

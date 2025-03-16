@@ -1,0 +1,16 @@
+#include <complex>
+#include <vector>
+#include <iostream>
+#include "../include/snake.h"
+
+
+int main(){
+    std::vector<std::complex<int>> complexArray;
+    complexArray.push_back(std::complex<int>(1, 1));
+    for (int i=0; i < complexArray.size(); i++){
+        complexArray[i] = std::complex<double>(complexArray[i].real() - 1, complexArray[i].imag());
+        std::cout << "Real Value is: " << complexArray[i].real() << "\n"; 
+        std::cout << "Imag Value is: " << complexArray[i].imag() << "\n"; 
+    }
+    std::cout << "Size of complex array is: " << complexArray.size() << "\n";
+}

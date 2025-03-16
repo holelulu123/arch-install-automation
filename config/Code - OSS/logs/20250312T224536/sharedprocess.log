@@ -1,0 +1,9 @@
+2025-03-12 20:45:42.876 [info] Getting Manifest... ms-python.debugpy
+2025-03-12 20:45:43.791 [info] Installing extension: ms-python.debugpy {"productVersion":{"version":"1.97.2","date":"2025-02-13T18:45:48.570Z"},"pinned":false,"operation":3,"isApplicationScoped":false,"profileLocation":{"$mid":1,"external":"vscode-userdata:/home/holelulu/.vscode-oss/extensions/extensions.json","path":"/home/holelulu/.vscode-oss/extensions/extensions.json","scheme":"vscode-userdata"},"installOnlyNewlyAddedFromExtensionPack":true}
+2025-03-12 20:45:44.023 [info] Getting Manifest... ms-python.python
+2025-03-12 20:46:13.992 [error] Could not load vsce-sign module Cannot find package '@vscode/vsce-sign' imported from /usr/lib/code/out/vs/code/electron-utility/sharedProcess/sharedProcessMain.js
+2025-03-12 20:46:13.992 [info] Extension signature verification is not done: ms-python.debugpy
+2025-03-12 20:46:14.773 [info] Extracted extension to file:///home/holelulu/.vscode-oss/extensions/ms-python.debugpy-2025.4.1-linux-x64: ms-python.debugpy
+2025-03-12 20:46:14.797 [info] Renamed to /home/holelulu/.vscode-oss/extensions/ms-python.debugpy-2025.4.1-linux-x64
+2025-03-12 20:46:14.819 [info] Marked extension as removed ms-python.debugpy-2025.4.0
+2025-03-12 20:46:14.842 [info] Extension installed successfully: ms-python.debugpy vscode-userdata:/home/holelulu/.vscode-oss/extensions/extensions.json

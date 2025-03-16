@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.5.1)
+project(MyProject)
+
+# Find headers
+target_include_directories(main PUBLIC /usr/include/qt)
+# Find library
+
+find_library(MYLIB_LIBRARY NAMES mylib PATHS /usr/lib/qt)
+message(STATUS "Found Library: ${MYLIB_LIBRARY}")
+# Add executable
+add_executable(main src/gui.cpp)
+
+# Link againt MyLib
+target_link_libraries(main ${MYLIB_LIBRARY})

@@ -1,0 +1,15 @@
+#ifndef __RCC_H
+#define __RCC_H
+
+typedef enum RCC_FirstStageClockType : __uint8_t {
+    MSI             = 0,
+    HSI16           = 1,
+    HSE             = 2,
+
+}RCC_FirstStageClockType;
+
+
+void SetClock_HSI16();
+void SetClock_HSI16_PLL();
+
+#endif

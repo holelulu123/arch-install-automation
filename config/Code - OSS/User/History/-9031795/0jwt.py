@@ -1,0 +1,31 @@
+#! venv/bin/python
+
+import numpy as np
+from link_budget import * 
+
+# Variables
+bandwidth = 62.5e3 # in Hz
+spreading_factor = 10 # between 6 to 12
+coding_rate = 1 # 1 - 4/5 | 2 - 4/6 | 3 - 4/7 | 4 - 4/8
+payload_length = 8 # between 1 - 255
+preamble_length = 0
+implicit_header = 1
+low_data_rate_optimize = 0
+crc = 0 # either 1 or zero
+
+# Symbol Rate
+rs = bandwidth / pow(2,spreading_factor)
+ts = 1 / rs
+
+# Premable time
+preamble_time = (preamble_length + 4.25) * ts
+
+# Payload Time
+n_payload = 8 + np.max(
+    np.ceil(
+    (8 * payload_length - 4 * spreading_factor + 28 + 16 * crc - 20 * implicit_header)/(4 * (spreading_factor - 2 * low_data_rate_optimize))*(coding_rate + 4))
+    , 0)
+time_payload = n_payload * ts
+
+total_time = time_payload + preamble_time
+print(f"Total packaet time is {total_time * 1000} Miliseconds")

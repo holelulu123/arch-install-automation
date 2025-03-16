@@ -1,0 +1,9 @@
+## installation guide:
+There are a few steps you need to do before you're ready to use the full potential of this project.
+1. Create python Virtual Environment -> python -m venv venv
+2. install the required python packages - pip install -r requirements.txt 
+3. building uhd from source, follow this guide -> https://files.ettus.com/manual/page_build_guide.html
+4. create soft link of uhd package into the python venv
+5. link into the path of usrp images- export UHD_IMAGES_DIR ='path/to/images'  
+
+

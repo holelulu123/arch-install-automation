@@ -1,0 +1,43 @@
+2025-03-16 19:34:14.666 [info] Extension host with pid 2403 started
+2025-03-16 19:34:14.666 [info] Skipping acquiring lock for /home/holelulu/.config/Code - OSS/User/workspaceStorage/fa2075676390d71a4d0d62db432b4b1f.
+2025-03-16 19:34:14.884 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2025-03-16 19:34:14.920 [info] ExtensionService#_doActivateExtension ms-python.python, startup: false, activationEvent: 'onLanguage:python', root cause: ms-python.debugpy
+2025-03-16 19:34:15.560 [info] ExtensionService#_doActivateExtension ms-python.debugpy, startup: false, activationEvent: 'onLanguage:python'
+2025-03-16 19:34:15.681 [error] Activating extension ms-python.debugpy failed due to an error:
+2025-03-16 19:34:15.681 [error] Error: Extension 'ms-python.debugpy' CANNOT use API proposal: portsAttributes.
+Its package.json#enabledApiProposals-property declares:  but NOT portsAttributes.
+ The missing proposal MUST be added and you must start in extension development mode or use the following command line switch: --enable-proposed-api ms-python.debugpy
+	at N (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:106:19035)
+	at Object.registerPortAttributesProvider (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:172:55709)
+	at t.registerDebugger (/home/holelulu/.vscode-oss/extensions/ms-python.debugpy-2025.4.1-linux-x64/dist/extension.js:2:846581)
+	at e.activate (/home/holelulu/.vscode-oss/extensions/ms-python.debugpy-2025.4.1-linux-x64/dist/extension.js:2:1098040)
+	at Ww.kb (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:116:15216)
+	at Ww.jb (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:116:14923)
+	at file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:116:13081
+	at async pw.n (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:112:13415)
+	at async pw.m (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:112:13378)
+	at async pw.l (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:112:12834)
+2025-03-16 19:34:15.688 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2025-03-16 19:34:15.707 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2025-03-16 19:34:15.828 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2025-03-16 19:34:15.929 [info] Eager extensions activated
+2025-03-16 19:34:15.999 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2025-03-16 19:34:16.006 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2025-03-16 19:34:16.043 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2025-03-16 19:34:16.701 [error] Error: Extension 'ms-python.python' CANNOT use API proposal: testObserver.
+Its package.json#enabledApiProposals-property declares:  but NOT testObserver.
+ The missing proposal MUST be added and you must start in extension development mode or use the following command line switch: --enable-proposed-api ms-python.python
+	at N (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:106:19035)
+	at get testResults (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:172:39547)
+	at C.activate (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:908493)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2457
+	at Array.map (<anonymous>)
+	at v.activateWorkspace (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2447)
+2025-03-16 19:37:41.015 [info] ExtensionService#_doActivateExtension vscode.debug-server-ready, startup: false, activationEvent: 'onDebugResolve'
+2025-03-16 19:37:43.666 [info] ExtensionService#_doActivateExtension vscode.npm, startup: false, activationEvent: 'onTerminalQuickFixRequest:ms-vscode.npm-command'
+2025-03-16 20:07:49.642 [error] [ms-python.python] provider FAILED
+2025-03-16 20:07:49.642 [error] Error: ValueError: `column` parameter (61) is not in a valid range (0-60) for line 14 ('    frame[y_start:y_finish, x_start:x_finish, :] = [0, 0, 0]\n').
+	at ae (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1974693)
+	at oe (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1972653)
+	at Immediate.<anonymous> (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1968947)
+	at process.processImmediate (node:internal/timers:483:21)

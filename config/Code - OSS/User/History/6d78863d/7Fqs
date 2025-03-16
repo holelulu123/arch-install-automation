@@ -1,0 +1,123 @@
+# Compiler and Tools
+TOOLCHAIN = /usr
+CPP = $(TOOLCHAIN)/bin/arm-none-eabi-g++
+AS  = $(TOOLCHAIN)/bin/arm-none-eabi-gcc
+LD  = $(TOOLCHAIN)/bin/arm-none-eabi-ld
+OC  = $(TOOLCHAIN)/bin/arm-none-eabi-objcopy
+OD  = $(TOOLCHAIN)/bin/arm-none-eabi-objdump
+OS  = $(TOOLCHAIN)/bin/arm-none-eabi-size
+
+# Define Build Path
+BUILD_DIR = build
+
+# Define Target Path
+TARGET = $(BUILD_DIR)/firmware
+
+# Define the linker script location
+LD_SCRIPT = $(shell find ./Core/Startup -name '*.ld')
+$(INFO Linker script file is: $(LD_SCRIPT))
+# Define startup Path
+STARTUP = $(shell find ./Core/Startup -name '*.s')
+
+# Define Header files - find all the .h files 
+INCDIR = Core/Inc
+
+# Define Source Files - find all the .c files
+SRCS = $(shell find ./Core/Src -name '*.c')
+
+# Define the chip architecture 
+MCU_SPEC = cortex-m0plus
+INC_DIRS_FLAG = $(addprefix -I, $(INCDIR))
+
+# Assembly directives.
+ASFLAGS += -mcpu=$(MCU_SPEC) 
+ASFLAGS += -mthumb 
+ASFLAGS += -Wall 
+ASFLAGS += -c 
+ASFLAGS += -Og 
+ASFLAGS += -fmessage-length=0
+
+# C and C++ compilation directives
+CPPFLAGS += -mcpu=$(MCU_SPEC)
+CPPFLAGS += -mthumb
+# CPPFLAGS += -march=armv7e-m
+CPPFLAGS += -mfloat-abi=soft
+CPPFLAGS += -Wall
+CPPFLAGS += -g3
+CPPFLAGS += -Og
+CPPFLAGS += -fmessage-length=0 -fno-common
+CPPFLAGS += -ffunction-sections -fdata-sections
+CPPFLAGS += -fno-exceptions
+CPPFLAGS += -fno-rtti
+CPPFLAGS += -std=c++11
+CPPFLAGS += $(INC_DIRS_FLAG)
+
+# Linker directives.
+LSCRIPT = $(LD_SCRIPT)
+LFLAGS += -mcpu=$(MCU_SPEC)
+LFLAGS += -mthumb
+LFLAGS += -mfloat-abi=soft
+LFLAGS += -Wall
+# LFLAGS += -march=armv7e-m
+LFLAGS += --static
+LFLAGS += --specs=nosys.specs
+LFLAGS += -Wl,-Map=$(TARGET).map
+LFLAGS += -lgcc
+LFLAGS += -Wl,--gc-sections
+LFLAGS += -Wl,--print-memory-usage
+LFLAGS += -Wl,-L./ld
+LFLAGS += -lc
+LFLAGS += -nostartfiles
+LFLAGS += -T$(LSCRIPT)
+
+
+ifneq ($(STARTUP),)
+	OBJS += $(addprefix $(BUILD_DIR)/, $(STARTUP:.s=.o))
+endif
+
+ifneq ($(SRCS),)
+	OBJS += $(addprefix $(BUILD_DIR)/, $(SRCS:.c=.o))
+endif
+
+
+
+# Entry point of the makefile
+.PHONY: all
+all: $(TARGET).bin 
+
+$(BUILD_DIR)/%.o: %.s
+	@mkdir -p $(dir $@)
+	$(AS) -x assembler-with-cpp $(ASFLAGS) $< -o $@
+
+$(BUILD_DIR)/%.o: %.c
+	mkdir -p $(dir $@)
+	$(CPP) -c $(CPPFLAGS) $< -o $@
+
+$(TARGET).elf: $(OBJS)
+	@mkdir -p $(dir $@)
+	$(CPP) $^ $(LFLAGS) -o $@
+
+$(TARGET).bin: $(TARGET).elf
+	@mkdir -p $(dir $@)
+	$(OC) -S -O binary $< $@
+
+# Clean the project and rebuild it
+.PHONY: fromscratch
+fromscratch: clean $(TARGET).bin
+
+# Clean the project
+.PHONY: clean
+clean:
+	rm -rf $(BUILD_DIR)
+
+# Enter debug mode using gdb
+.PHONY: debug
+debug:
+	st-util&
+	arm-none-eabi-gdb -ex="target extended-remote : 4242" $(TARGET).elf
+	pidof ../tools/st-util | xargs kill
+
+# Flash the code into the board
+.PHONY: flash
+flash:
+	st-flash --reset write $(TARGET).bin 0x08000000

@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.16)
+
+project(main VERSION 1.0.0 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+file(GLOB_RECURSE SRC_FILES src/*.cpp CONFIGURE_DEPENDS)
+
+add_executable(main src/gui.cpp)
+
+
+target_include_directories(main include/)
+find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
+
+target_link_libraries(main PRIVATE Qt5::Widgets Qt5::Core)

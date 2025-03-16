@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "stm32l0xx_ll_gpio.h": "c",
+        "stm32l0xx.h": "c",
+        "cstdint": "cpp",
+        "libc-header-start.h": "c",
+        "features.h": "c",
+        "stubs.h": "c",
+        "stm32l072xx.h": "c",
+        "system_stm32l0xx.h": "c",
+        "stdint.h": "c",
+        "core_cm0plus.h": "c"
+    }
+}

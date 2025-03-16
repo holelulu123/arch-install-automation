@@ -1,0 +1,33 @@
+{
+    "configurations": [
+        {
+            "name": "STM32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/include",
+                "/usr/lib/gcc/arm-none-eabi/**",
+                "/usr/arm-none-eabi/include",
+                "/usr/arm-none-eabi/include/c++/14.2.0",  
+                "/home/holelulu/Documents/stm32l1/STM32CubeL0/Drivers/CMSIS/Include",
+                "/home/holelulu/Documents/stm32l1/STM32CubeL0/Drivers/CMSIS/Device/ST/STM32L0xx/Include"
+            ],
+            "defines": [
+                "STM32L072xx",
+                "USE_HAL_DRIVER"
+            ],
+            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "gcc-arm",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/**",
+                    "/usr/arm-none-eabi/include"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        }
+    ],
+    "version": 4
+}

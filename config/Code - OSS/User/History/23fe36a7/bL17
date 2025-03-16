@@ -1,0 +1,13 @@
+CXX=g++
+
+build/main.o: src/tile.cpp include/snake.h include/apple.h
+	$(CXX) src/tile.cpp src/snake.cpp src/apple.cpp -o build/tile.o
+
+build/snake.o: src/snake.cpp
+	$(CXX) -c src/snake.cpp -o build/snake.o
+
+build/apple.o: src/apple.cpp
+	$(CXX) -c src/apple.cpp -o build/apple.o
+
+clean:
+	rm build/*

@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "stm32l072xx.h": "c",
+        "bit_test.h": "c",
+        "cstdint": "c"
+    }
+}

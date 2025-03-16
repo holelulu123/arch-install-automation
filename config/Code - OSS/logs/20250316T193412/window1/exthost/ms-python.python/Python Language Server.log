@@ -1,0 +1,66 @@
+2025-03-16 19:34:24.834 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "7"
+
+2025-03-16 19:34:25.870 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "9"
+
+2025-03-16 19:34:39.465 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "28"
+
+2025-03-16 19:36:24.789 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "61"
+
+2025-03-16 19:36:28.609 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "68"
+
+2025-03-16 19:36:35.082 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "87"
+
+2025-03-16 19:36:35.105 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "88"
+
+2025-03-16 19:36:35.515 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "90"
+
+2025-03-16 20:00:01.022 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "494"
+
+2025-03-16 20:00:02.719 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "499"
+
+2025-03-16 20:00:02.721 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "500"
+
+2025-03-16 20:00:02.723 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "501"
+
+2025-03-16 20:00:02.725 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "502"
+
+2025-03-16 20:00:19.844 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "540"
+
+2025-03-16 20:00:19.845 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "543"
+
+2025-03-16 20:00:19.846 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "542"
+
+2025-03-16 20:00:19.937 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "541"
+
+2025-03-16 20:00:19.942 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "545"
+
+2025-03-16 20:00:19.942 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "547"
+
+2025-03-16 20:00:19.942 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "544"
+
+2025-03-16 20:00:20.070 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "546"
+
+2025-03-16 20:02:04.702 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "569"
+
+2025-03-16 20:06:19.584 [info] WARNING:pygls.protocol.json_rpc:Cancel notification for unknown message id "839"
+
+2025-03-16 20:07:49.593 [info] ERROR:pygls.protocol.json_rpc:Failed to handle request 943 textDocument/documentHighlight DocumentHighlightParams(text_document=TextDocumentIdentifier(uri='file:///home/holelulu/projects/analog_video/analog_video.py'), position=13:61, work_done_token=None, partial_result_token=None)
+Traceback (most recent call last):
+  File "/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/python_files/lib/jedilsp/pygls/protocol/json_rpc.py", line 266, in _handle_request
+    self._execute_request(msg_id, handler, params)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/python_files/lib/jedilsp/pygls/protocol/json_rpc.py", line 188, in _execute_request
+    self._send_response(msg_id, handler(params))
+                                ~~~~~~~^^^^^^^^
+  File "/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/python_files/lib/jedilsp/jedi_language_server/server.py", line 389, in highlight
+    names = jedi_script.get_references(*jedi_lines, scope="file")
+  File "/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/python_files/lib/jedilsp/jedi/api/helpers.py", line 484, in wrapper
+    raise ValueError('`column` parameter (%d) is not in a valid range '
+                     '(0-%d) for line %d (%r).' % (
+                         column, line_len, line, line_string))
+ValueError: `column` parameter (61) is not in a valid range (0-60) for line 14 ('    frame[y_start:y_finish, x_start:x_finish, :] = [0, 0, 0]\n').
+
+2025-03-16 20:07:49.642 [info] [Error - 8:07:49 PM] Request textDocument/documentHighlight failed.
+2025-03-16 20:07:49.642 [info]   Message: ValueError: `column` parameter (61) is not in a valid range (0-60) for line 14 ('    frame[y_start:y_finish, x_start:x_finish, :] = [0, 0, 0]\n').
+  Code: -32603 
+[object Object]

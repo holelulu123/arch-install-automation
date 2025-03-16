@@ -1,0 +1,19 @@
+2025-03-13 22:17:17.712 [info] Started local extension host with pid 2612.
+2025-03-13 22:17:18.118 [error] Extension 'ms-python.debugpy CANNOT USE these API proposals 'portsAttributes, debugVisualization, contribViewsWelcome'. You MUST start in extension development mode or use the --enable-proposed-api command line flag
+2025-03-13 22:17:18.119 [error] Extension 'ms-python.python CANNOT USE these API proposals 'contribEditorContentMenu, quickPickSortByLabel, testObserver, quickPickItemTooltip, terminalDataWriteEvent, terminalExecuteCommandEvent, codeActionAI, notebookReplDocument, notebookVariableProvider'. You MUST start in extension development mode or use the --enable-proposed-api command line flag
+2025-03-13 22:17:18.119 [error] Extension 'ms-vscode.cpptools CANNOT USE these API proposals 'terminalDataWriteEvent'. You MUST start in extension development mode or use the --enable-proposed-api command line flag
+2025-03-13 22:17:18.156 [error] [ms-python.python]: editor/content is a proposed menu identifier. It requires 'package.json#enabledApiProposals: ["contribEditorContentMenu"]' and is only available when running out of dev or with the following command line switch: --enable-proposed-api ms-python.python
+2025-03-13 22:17:20.178 [error] Error while getting the latest version for the extension llvm-vs-code-extensions.vscode-clangd. Cannot read properties of undefined (reading 'replace')
+2025-03-13 22:17:20.179 [error] Error while getting the latest version for the extension mateuszdrewniak.theme-dracula-dark-plus. Cannot read properties of undefined (reading 'replace')
+2025-03-13 22:17:20.179 [error] Error while getting the latest version for the extension ms-python.debugpy. Cannot read properties of undefined (reading 'replace')
+2025-03-13 22:17:20.180 [error] Error while getting the latest version for the extension ms-python.python. Cannot read properties of undefined (reading 'replace')
+2025-03-13 22:17:20.180 [error] Error while getting the latest version for the extension ms-vscode.cpptools. Cannot read properties of undefined (reading 'replace')
+2025-03-13 22:17:20.180 [error] Error while getting the latest version for the extension pkief.material-icon-theme. Cannot read properties of undefined (reading 'replace')
+2025-03-13 22:17:20.181 [error] Error while getting the latest version for the extension twxs.cmake. Cannot read properties of undefined (reading 'replace')
+2025-03-13 22:17:20.512 [info] [perf] Render performance baseline is 30ms
+2025-03-13 23:29:35.836 [error] Illegal value for lineNumber: Error: Illegal value for lineNumber
+    at bf.getLineMaxColumn (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:252:112)
+    at ka.getBottomForLineNumber (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:261:1594)
+    at Q0.findScrollWidgetState (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:452:33539)
+    at Q0.fb (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:452:32821)
+    at async Q0.db (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:452:32307)

@@ -1,0 +1,40 @@
+2025-03-16 19:26:53.755 [info] Extension host with pid 1262 started
+2025-03-16 19:26:53.755 [info] Skipping acquiring lock for /home/holelulu/.config/Code - OSS/User/workspaceStorage/fa2075676390d71a4d0d62db432b4b1f.
+2025-03-16 19:26:53.780 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2025-03-16 19:26:53.790 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2025-03-16 19:26:53.905 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2025-03-16 19:26:54.034 [info] Eager extensions activated
+2025-03-16 19:26:54.077 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2025-03-16 19:26:54.080 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2025-03-16 19:26:58.346 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2025-03-16 19:28:18.897 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2025-03-16 19:28:19.085 [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:jsonc'
+2025-03-16 19:28:19.104 [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+2025-03-16 19:28:19.241 [info] ExtensionService#_doActivateExtension vscode.typescript-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+2025-03-16 19:29:57.631 [info] ExtensionService#_doActivateExtension ms-python.python, startup: false, activationEvent: 'onLanguage:python', root cause: ms-python.debugpy
+2025-03-16 19:29:58.085 [info] ExtensionService#_doActivateExtension ms-python.debugpy, startup: false, activationEvent: 'onLanguage:python'
+2025-03-16 19:29:58.189 [error] Activating extension ms-python.debugpy failed due to an error:
+2025-03-16 19:29:58.189 [error] Error: Extension 'ms-python.debugpy' CANNOT use API proposal: portsAttributes.
+Its package.json#enabledApiProposals-property declares:  but NOT portsAttributes.
+ The missing proposal MUST be added and you must start in extension development mode or use the following command line switch: --enable-proposed-api ms-python.debugpy
+	at N (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:106:19035)
+	at Object.registerPortAttributesProvider (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:172:55709)
+	at t.registerDebugger (/home/holelulu/.vscode-oss/extensions/ms-python.debugpy-2025.4.1-linux-x64/dist/extension.js:2:846581)
+	at e.activate (/home/holelulu/.vscode-oss/extensions/ms-python.debugpy-2025.4.1-linux-x64/dist/extension.js:2:1098040)
+	at Ww.kb (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:116:15216)
+	at Ww.jb (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:116:14923)
+	at file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:116:13081
+	at async pw.n (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:112:13415)
+	at async pw.m (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:112:13378)
+	at async pw.l (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:112:12834)
+2025-03-16 19:29:59.369 [error] Error: Extension 'ms-python.python' CANNOT use API proposal: testObserver.
+Its package.json#enabledApiProposals-property declares:  but NOT testObserver.
+ The missing proposal MUST be added and you must start in extension development mode or use the following command line switch: --enable-proposed-api ms-python.python
+	at N (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:106:19035)
+	at get testResults (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:172:39547)
+	at C.activate (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:908493)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2457
+	at Array.map (<anonymous>)
+	at v.activateWorkspace (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2447)
+2025-03-16 19:34:09.265 [info] Extension host terminating: renderer closed the MessagePort
+2025-03-16 19:34:09.301 [info] Extension host with pid 1262 exiting with code 0

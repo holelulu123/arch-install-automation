@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        {
+            "name": "STM32",
+            "includePath": [
+                "Core/Inc",
+                "/usr/arm-none-eabi/include/
+            ]
+        }
+    ],
+    "version": 4
+}

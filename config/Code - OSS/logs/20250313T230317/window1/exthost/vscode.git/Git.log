@@ -1,0 +1,32 @@
+2025-03-13 21:03:20.827 [info] [main] Log level: Info
+2025-03-13 21:03:20.827 [info] [main] Validating found git in: "git"
+2025-03-13 21:03:20.827 [info] [main] Using git "2.48.1" from "git"
+2025-03-13 21:03:20.827 [info] [Model][doInitialScan] Initial repository scan started
+2025-03-13 21:03:20.827 [info] > git rev-parse --show-toplevel [7ms]
+2025-03-13 21:03:20.827 [info] > git rev-parse --git-dir --git-common-dir [7ms]
+2025-03-13 21:03:20.827 [info] [Model][openRepository] Opened repository: /home/holelulu/projects/c_cpp_projects/stm32
+2025-03-13 21:03:20.829 [info] > git rev-parse --show-toplevel [27ms]
+2025-03-13 21:03:20.830 [info] > git config --get commit.template [37ms]
+2025-03-13 21:03:20.864 [info] > git rev-parse --show-toplevel [12ms]
+2025-03-13 21:03:20.873 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/dev refs/remotes/dev [11ms]
+2025-03-13 21:03:20.895 [info] > git status -z -uall [13ms]
+2025-03-13 21:03:20.896 [info] > git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname) [5ms]
+2025-03-13 21:03:20.920 [info] > git rev-parse --show-toplevel [48ms]
+2025-03-13 21:03:20.939 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/dev refs/remotes/dev [20ms]
+2025-03-13 21:03:20.954 [info] > git rev-parse --show-toplevel [16ms]
+2025-03-13 21:03:20.955 [info] > git config --get commit.template [25ms]
+2025-03-13 21:03:20.964 [info] > git config --get --local branch.dev.vscode-merge-base [18ms]
+2025-03-13 21:03:20.980 [info] > git rev-parse --show-toplevel [17ms]
+2025-03-13 21:03:20.981 [info] [Model][doInitialScan] Initial repository scan completed - repositories (1), closed repositories (0), parent repositories (0), unsafe repositories (0)
+2025-03-13 21:03:21.004 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/dev refs/remotes/dev [24ms]
+2025-03-13 21:03:21.021 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/origin/dev refs/remotes/origin/dev [49ms]
+2025-03-13 21:03:21.025 [info] > git status -z -uall [11ms]
+2025-03-13 21:03:21.025 [info] > git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname) [4ms]
+2025-03-13 21:03:21.130 [info] > git show --textconv :Core/Src/sx_1276.c [9ms]
+2025-03-13 21:03:21.132 [info] > git ls-files --stage -- /home/holelulu/projects/c_cpp_projects/stm32/Core/Src/sx_1276.c [3ms]
+2025-03-13 21:03:21.143 [info] > git cat-file -s 9da37fa3b209524b26bd828611a666b02227f961 [2ms]
+2025-03-13 21:03:21.494 [info] > git blame --root --incremental 0986938e2196de524b6a1dc6b59a64458187af0f -- /home/holelulu/projects/c_cpp_projects/stm32/Core/Src/sx_1276.c [306ms]
+2025-03-13 21:03:21.541 [info] > git check-ignore -v -z --stdin [49ms]
+2025-03-13 21:03:22.166 [info] > git ls-files --stage -- /home/holelulu/projects/c_cpp_projects/stm32/Core/Src/sx_1276.c [2ms]
+2025-03-13 21:03:22.176 [info] > git cat-file -s 9da37fa3b209524b26bd828611a666b02227f961 [1ms]
+2025-03-13 21:03:22.207 [info] > git show --textconv :Core/Src/sx_1276.c [4ms]

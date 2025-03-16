@@ -1,0 +1,41 @@
+#ifndef __L80_M39
+#define __L80_M39
+#include <stdio.h>
+
+#define NMEA_MESSAGE_ID_GPRMC "$GPRMC"
+#define NMEA_MESSAGE_ID_GPVTG "$GPVTG"
+#define NMEA_MESSAGE_ID_GPGGA "$GPGGA"
+#define NMEA_MESSAGE_ID_GPGSA "$GPGSA"
+#define NMEA_MESSAGE_ID_GPGSV "$GPGSV"
+#define NMEA_MESSAGE_ID_GPGLL "$GPGLL"
+#define NMEA_MESSAGE_ID_GPTXT "$GPTXT"
+
+
+#define NMEA_MESSAGE_ID_SIZE 6
+#define NMEA_MESSAGE_ID_START_INDEX 0
+#define NMEA_MESSAGE_FIELD_END_SIGN ","
+#define NMEA_MESSAGE_END_SIGN "*"
+
+#define NMEA_MESSAGE_START_DECODING_INDEX 
+
+// GPS Parameters 
+extern float* longtitude;
+extern float* latitude;
+extern float* altitude;
+extern float* velocity;
+extern int number_of_sv;
+extern int fixed_3d;
+extern int antenna;
+extern int day;
+extern int month;
+extern int year;
+
+extern int hour;
+extern int minute;
+extern int second;
+extern int millisecond;
+
+
+void GPS_NMEA_MessageParser(char message[]);
+
+#endif

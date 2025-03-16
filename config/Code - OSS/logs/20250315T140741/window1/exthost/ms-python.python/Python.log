@@ -1,0 +1,191 @@
+2025-03-15 12:32:38.121 [warning] Dir "/home/holelulu/projects/c_cpp_projects/stm32/.pixi/envs" is not watchable (directory does not exist)
+2025-03-15 12:32:38.121 [error] Unable to check if shell integration is active [Error: Extension 'ms-python.python' CANNOT use API proposal: terminalDataWriteEvent.
+Its package.json#enabledApiProposals-property declares:  but NOT terminalDataWriteEvent.
+ The missing proposal MUST be added and you must start in extension development mode or use the following command line switch: --enable-proposed-api ms-python.python
+	at N (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:110:16858)
+	at a.onDidWriteTerminalData (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:172:46213)
+	at new v (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:877941)
+	at ge (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1684578)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687942
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687970
+	at Se (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688037)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688517
+	at we (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688458)
+	at Pe (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688492)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1685731
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687336
+	at Array.reduce (<anonymous>)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687308
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687590
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687970
+	at Se (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688037)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688517
+	at we (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688458)
+	at Pe (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688492)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1685731
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1715401
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1715422
+	at e._get (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1714435)
+	at e._getButThrowIfAsync (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1714495)
+	at e.get (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1710204)
+	at e.dynamicValue (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1699937)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1686114
+	at Ee (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1686370)
+	at Se (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688086)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688517
+	at we (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688458)
+	at Pe (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688492)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1685731
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1685665
+	at Array.map (<anonymous>)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1685636
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687336
+	at Array.reduce (<anonymous>)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687308
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687590
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1687970
+	at Se (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688037)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688517
+	at we (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688458)
+	at Pe (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1688492)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1685731
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1715401
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1715422
+	at e._get (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1714435)
+	at e._getButThrowIfAsync (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1714495)
+	at e.get (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1710204)
+	at a.get (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:536568)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:451405
+	at async t.activateComponents (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:449685)
+	at async /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2639568
+	at async e (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2639100)
+	at async aw.n (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:112:4447)
+	at async aw.m (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:112:4410)
+	at async aw.l (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:112:3866)]
+2025-03-15 12:32:38.121 [info] Starting Environment refresh
+2025-03-15 12:32:38.121 [info] Starting Environment refresh
+2025-03-15 12:32:38.121 [info] > hatch env show --json
+2025-03-15 12:32:38.121 [info] cwd: .
+2025-03-15 12:32:38.130 [info] Environments refresh finished (event): 106 milliseconds
+2025-03-15 12:32:38.130 [info] Environments refresh paths discovered: 107 milliseconds
+2025-03-15 12:32:38.130 [info] Environments refresh finished (event): 108 milliseconds
+2025-03-15 12:32:38.130 [info] Environments refresh paths discovered: 108 milliseconds
+2025-03-15 12:32:38.132 [info] Environment refresh took 108 milliseconds
+2025-03-15 12:32:38.133 [info] Environment refresh took 111 milliseconds
+2025-03-15 12:32:38.146 [info] > pyenv which python
+2025-03-15 12:32:38.146 [info] cwd: .
+2025-03-15 12:32:38.162 [error] [
+  'Failed to activate a workspace, Class name = v, completed in 141ms, has a falsy return value, Arg 1: <Uri:/home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py>, Arg 2: {"started":1742041957965}, Return Value: undefined',
+  [Error: Extension 'ms-python.python' CANNOT use API proposal: testObserver.
+  Its package.json#enabledApiProposals-property declares:  but NOT testObserver.
+   The missing proposal MUST be added and you must start in extension development mode or use the following command line switch: --enable-proposed-api ms-python.python
+  	at N (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:110:16858)
+  	at get testResults (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:172:39426)
+  	at C.activate (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:908493)
+  	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2457
+  	at Array.map (<anonymous>)
+  	at v.activateWorkspace (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2447)]
+]
+2025-03-15 12:32:38.162 [error] Failure during activation. [Error: Extension 'ms-python.python' CANNOT use API proposal: testObserver.
+Its package.json#enabledApiProposals-property declares:  but NOT testObserver.
+ The missing proposal MUST be added and you must start in extension development mode or use the following command line switch: --enable-proposed-api ms-python.python
+	at N (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:110:16858)
+	at get testResults (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:172:39426)
+	at C.activate (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:908493)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2457
+	at Array.map (<anonymous>)
+	at v.activateWorkspace (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2447)]
+2025-03-15 12:32:38.162 [error] sendStartupTelemetry() failed. [Error: Extension 'ms-python.python' CANNOT use API proposal: testObserver.
+Its package.json#enabledApiProposals-property declares:  but NOT testObserver.
+ The missing proposal MUST be added and you must start in extension development mode or use the following command line switch: --enable-proposed-api ms-python.python
+	at N (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:110:16858)
+	at get testResults (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:172:39426)
+	at C.activate (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:908493)
+	at /home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2457
+	at Array.map (<anonymous>)
+	at v.activateWorkspace (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:2447)]
+2025-03-15 12:32:38.208 [info] > /bin/python -I ~/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/python_files/get_output_via_markers.py ~/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/python_files/interpreterInfo.py
+2025-03-15 12:32:38.246 [info] Python interpreter path: /bin/python
+2025-03-15 12:32:39.295 [info] Starting Jedi language server for stm32.
+2025-03-15 12:32:51.659 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:32:52.198 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:32:59.597 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:34:10.672 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:34:28.447 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:34:34.312 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:34:46.696 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:34:52.312 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:35:04.183 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:35:07.019 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:35:09.993 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:35:12.606 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:35:28.816 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:35:48.681 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:36:02.288 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:36:06.311 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:36:28.481 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:36:39.681 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:36:47.720 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:36:58.232 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:37:59.337 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:38:02.577 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:44:30.059 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:44:30.540 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:44:39.058 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:45:19.331 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:48:40.464 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:48:41.731 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:48:46.841 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:48:53.139 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:48:54.686 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:49:15.769 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:49:16.378 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:49:18.953 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:49:37.114 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:49:39.697 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:49:41.968 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:49:52.250 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:50:33.260 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:50:35.595 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:50:39.945 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:50:54.819 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:50:58.163 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:51:07.128 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:51:27.324 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:51:28.235 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:51:35.446 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:52:04.813 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:52:16.054 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:52:40.364 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:52:48.725 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:52:56.252 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:54:10.237 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:54:19.665 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:54:30.496 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:55:16.713 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:55:57.464 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:55:57.831 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:56:01.655 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:56:06.536 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:56:21.347 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:56:46.754 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:57:45.479 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:58:02.605 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:59:03.739 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:59:04.900 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:59:27.646 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 12:59:38.812 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 13:00:11.291 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 13:00:13.618 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 13:01:03.230 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 13:01:25.124 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 13:12:09.007 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 13:12:16.383 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 13:12:26.391 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 13:12:39.863 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 13:13:38.351 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 13:13:39.633 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 13:13:40.470 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 13:13:42.365 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 13:21:32.676 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py
+2025-03-15 13:21:47.355 [info] Discover tests for workspace name: stm32 - uri: /home/holelulu/projects/c_cpp_projects/stm32/LoRa-Calculation/lora_time.py

@@ -1,0 +1,30 @@
+receiver_coordination_1 = [31.498890974766184
+34.804414382025286] 
+receiver_coordination_2 = [31.488720250381718
+34.81917131535559]
+receiver_coordination_3 = [31.505826171295062
+34.81090871869788]
+
+# Tdoa Parameters
+
+max_distance = 5000 # Meters
+fs = 30.72e6 # Hz
+time = 0.4 # Second
+chunk_time = 0.01 # Second
+
+# Model Parameters
+
+batch_size = 40
+windows_per_batch = 0
+device_mapping_path = 'src/model/device_mapping.json'
+
+identification_checkpoint_path = "src/model/identification_best_model.pth"
+classification_checkpoint_path = "src/model/classification_best_model.pth"
+
+num_windows = 40
+
+# Gunicorn Parameters
+
+bind = "172.20.10.13:8000" # ip + port
+workers = 4 # workers count
+timeout = 30 # timeout of a individual request

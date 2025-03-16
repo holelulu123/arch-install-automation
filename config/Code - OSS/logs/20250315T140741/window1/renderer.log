@@ -1,0 +1,61 @@
+2025-03-15 12:07:42.911 [info] Started local extension host with pid 1332.
+2025-03-15 12:07:43.291 [error] Extension 'ms-python.debugpy CANNOT USE these API proposals 'portsAttributes, debugVisualization, contribViewsWelcome'. You MUST start in extension development mode or use the --enable-proposed-api command line flag
+2025-03-15 12:07:43.291 [error] Extension 'ms-python.python CANNOT USE these API proposals 'contribEditorContentMenu, quickPickSortByLabel, testObserver, quickPickItemTooltip, terminalDataWriteEvent, terminalExecuteCommandEvent, codeActionAI, notebookReplDocument, notebookVariableProvider'. You MUST start in extension development mode or use the --enable-proposed-api command line flag
+2025-03-15 12:07:43.291 [error] Extension 'ms-vscode.cpptools CANNOT USE these API proposals 'terminalDataWriteEvent'. You MUST start in extension development mode or use the --enable-proposed-api command line flag
+2025-03-15 12:07:43.332 [error] [ms-python.python]: editor/content is a proposed menu identifier. It requires 'package.json#enabledApiProposals: ["contribEditorContentMenu"]' and is only available when running out of dev or with the following command line switch: --enable-proposed-api ms-python.python
+2025-03-15 12:07:45.350 [error] Error while getting the latest version for the extension llvm-vs-code-extensions.vscode-clangd. Cannot read properties of undefined (reading 'replace')
+2025-03-15 12:07:45.351 [error] Error while getting the latest version for the extension mateuszdrewniak.theme-dracula-dark-plus. Cannot read properties of undefined (reading 'replace')
+2025-03-15 12:07:45.351 [error] Error while getting the latest version for the extension ms-python.debugpy. Cannot read properties of undefined (reading 'replace')
+2025-03-15 12:07:45.351 [error] Error while getting the latest version for the extension ms-python.python. Cannot read properties of undefined (reading 'replace')
+2025-03-15 12:07:45.352 [error] Error while getting the latest version for the extension ms-vscode.cpptools. Cannot read properties of undefined (reading 'replace')
+2025-03-15 12:07:45.352 [error] Error while getting the latest version for the extension pkief.material-icon-theme. Cannot read properties of undefined (reading 'replace')
+2025-03-15 12:07:45.352 [error] Error while getting the latest version for the extension twxs.cmake. Cannot read properties of undefined (reading 'replace')
+2025-03-15 12:07:45.701 [info] [perf] Render performance baseline is 29ms
+2025-03-15 12:32:39.171 [error] An unknown error occurred. Please consult the log for more details.
+2025-03-15 12:33:49.208 [error] UnboundLocalError: cannot access local variable 'start_index' where it is not associated with a value: Error: UnboundLocalError: cannot access local variable 'start_index' where it is not associated with a value
+	at ae (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1974693)
+	at oe (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1972653)
+	at Immediate.<anonymous> (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1968947)
+	at process.processImmediate (node:internal/timers:483:21)
+2025-03-15 12:49:36.817 [error] UnboundLocalError: cannot access local variable 'start_index' where it is not associated with a value: Error: UnboundLocalError: cannot access local variable 'start_index' where it is not associated with a value
+	at ae (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1974693)
+	at oe (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1972653)
+	at Immediate.<anonymous> (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1968947)
+	at process.processImmediate (node:internal/timers:483:21)
+2025-03-15 12:49:38.154 [error] UnboundLocalError: cannot access local variable 'start_index' where it is not associated with a value: Error: UnboundLocalError: cannot access local variable 'start_index' where it is not associated with a value
+	at ae (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1974693)
+	at oe (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1972653)
+	at Immediate.<anonymous> (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1968947)
+	at process.processImmediate (node:internal/timers:483:21)
+2025-03-15 13:11:43.764 [error] UnboundLocalError: cannot access local variable 'end_index' where it is not associated with a value: Error: UnboundLocalError: cannot access local variable 'end_index' where it is not associated with a value
+	at ae (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1974693)
+	at oe (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1972653)
+	at Immediate.<anonymous> (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1968947)
+	at process.processImmediate (node:internal/timers:483:21)
+2025-03-15 13:11:50.369 [error] UnboundLocalError: cannot access local variable 'end_index' where it is not associated with a value: Error: UnboundLocalError: cannot access local variable 'end_index' where it is not associated with a value
+	at ae (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1974693)
+	at oe (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1972653)
+	at Immediate.<anonymous> (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1968947)
+	at process.processImmediate (node:internal/timers:483:21)
+2025-03-15 13:11:58.034 [error] UnboundLocalError: cannot access local variable 'end_index' where it is not associated with a value: Error: UnboundLocalError: cannot access local variable 'end_index' where it is not associated with a value
+	at ae (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1974693)
+	at oe (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1972653)
+	at Immediate.<anonymous> (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1968947)
+	at process.processImmediate (node:internal/timers:483:21)
+2025-03-15 13:12:09.202 [error] UnboundLocalError: cannot access local variable 'end_index' where it is not associated with a value: Error: UnboundLocalError: cannot access local variable 'end_index' where it is not associated with a value
+	at ae (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1974693)
+	at oe (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1972653)
+	at Immediate.<anonymous> (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1968947)
+	at process.processImmediate (node:internal/timers:483:21)
+2025-03-15 13:12:12.647 [error] UnboundLocalError: cannot access local variable 'end_index' where it is not associated with a value: Error: UnboundLocalError: cannot access local variable 'end_index' where it is not associated with a value
+	at ae (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1974693)
+	at oe (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1972653)
+	at Immediate.<anonymous> (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1968947)
+	at process.processImmediate (node:internal/timers:483:21)
+2025-03-16 00:07:46.331 [error] Error while getting the latest version for the extension llvm-vs-code-extensions.vscode-clangd. Cannot read properties of undefined (reading 'replace')
+2025-03-16 00:07:46.332 [error] Error while getting the latest version for the extension mateuszdrewniak.theme-dracula-dark-plus. Cannot read properties of undefined (reading 'replace')
+2025-03-16 00:07:46.332 [error] Error while getting the latest version for the extension ms-python.debugpy. Cannot read properties of undefined (reading 'replace')
+2025-03-16 00:07:46.333 [error] Error while getting the latest version for the extension ms-python.python. Cannot read properties of undefined (reading 'replace')
+2025-03-16 00:07:46.333 [error] Error while getting the latest version for the extension ms-vscode.cpptools. Cannot read properties of undefined (reading 'replace')
+2025-03-16 00:07:46.333 [error] Error while getting the latest version for the extension pkief.material-icon-theme. Cannot read properties of undefined (reading 'replace')
+2025-03-16 00:07:46.334 [error] Error while getting the latest version for the extension twxs.cmake. Cannot read properties of undefined (reading 'replace')

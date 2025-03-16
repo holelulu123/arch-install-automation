@@ -1,0 +1,84 @@
+#include <iterator>
+#include <map>
+#include <vector>
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+bool isAnagram(string first, string second){
+    map<char, int> check_map_first;
+    map<char, int> check_map_second;
+    if (first.size() != second.size()){
+        return false;
+    }
+    for (int i = 0; i < first.size(); i++){ 
+        check_map_first[first[i]]++;
+        check_map_second[second[i]]++;
+    }
+    for (const auto& pair : check_map_first){
+        if (check_map_second.find(pair.first) != check_map_second.end()){
+            if (check_map_second[pair.first] != pair.second){
+                return false;
+            }
+        }
+        
+        else{
+            return false;
+        }
+    }   
+    return true;
+}
+
+int return_max_in_vector(vector<int> nums){
+    
+    int temp_max = 0;
+    for (int i = 0; i < nums.size(); i++){
+        if (nums[i] > temp_max){
+            temp_max = nums[i];
+        }
+    }
+    return temp_max;
+}
+
+vector<string> decode(string s){
+    string delimiter = "_";
+    string temp_str = "";
+    int to_index = s.find(delimiter); 
+    while(to_index != -1){
+        temp_str = s.substr(0, to_index);
+        
+        to_index = s.find(delimiter);
+    }
+    
+}
+
+string encode(vector<string>& strs){
+    // vector<int> sizes_vector;
+    string str = "";
+    for (int i = 0; i < strs.size(); i++){
+        str += strs[i];
+        str += "_";
+        // sizes_vector.push_back(strs[i].size());
+
+    }
+    return str;
+}
+
+
+int main(){
+    // vector<string> str = {"hello", "world", "iam", "yuval"};
+    string s = "hello_world_iam_yuval";
+    string delimiter = "_";
+    int index; 
+    index = s.find(delimiter);
+
+    // int limit = s.size() - 1;
+    // string token = s.substr(s.find(delimiter)+3, 8);
+    cout << "Index: " << index << endl;
+    // cout << token << endl;
+
+
+
+    return 0;
+}   

@@ -1,0 +1,14 @@
+# SDR MOCK
+This project is supposed to mimic the SDR service (node) and send packets to the server.
+We simulate in here an outdoor enviorment with various parameters like:
+    - Bandwidth
+    - Number of packets
+    - Time of signal
+    - Different delta T to change position of Transmitter
+
+# How to Start
+1. install virtual enviorment -> python3 -m venv venv
+2. enter the virtual enviorment -> source venv/bin/activate
+2. install packages through requirements.txt file ->  
+    
+

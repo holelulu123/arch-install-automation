@@ -1,0 +1,23 @@
+{
+    "files.associations": {
+        "stm32l072xx.h": "c",
+        "bit_test.h": "c",
+        "cstdint": "c",
+        "stm32l0xx.h": "c",
+        "main.h": "c",
+        "stdio.h": "c",
+        "string.h": "c",
+        "rcc.h": "c",
+        "uart.h": "c",
+        "l80_m39.h": "c",
+        "chrono": "c",
+        "nmea_parser.h": "c",
+        "system_error": "cpp",
+        "spi.h": "c",
+        "gpio.h": "c",
+        "board_config.h": "c",
+        "text_encoding": "c",
+        "typeinfo": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}

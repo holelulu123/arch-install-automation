@@ -1,0 +1,15 @@
+2025-03-16 19:34:13.749 [info] Started local extension host with pid 2403.
+2025-03-16 19:34:14.212 [error] Extension 'ms-python.debugpy CANNOT USE these API proposals 'portsAttributes, debugVisualization, contribViewsWelcome'. You MUST start in extension development mode or use the --enable-proposed-api command line flag
+2025-03-16 19:34:14.212 [error] Extension 'ms-python.python CANNOT USE these API proposals 'contribEditorContentMenu, quickPickSortByLabel, testObserver, quickPickItemTooltip, terminalDataWriteEvent, terminalExecuteCommandEvent, codeActionAI, notebookReplDocument, notebookVariableProvider'. You MUST start in extension development mode or use the --enable-proposed-api command line flag
+2025-03-16 19:34:14.249 [error] [ms-python.python]: editor/content is a proposed menu identifier. It requires 'package.json#enabledApiProposals: ["contribEditorContentMenu"]' and is only available when running out of dev or with the following command line switch: --enable-proposed-api ms-python.python
+2025-03-16 19:34:16.141 [error] Error while getting the latest version for the extension mateuszdrewniak.theme-dracula-dark-plus. Cannot read properties of undefined (reading 'replace')
+2025-03-16 19:34:16.141 [error] Error while getting the latest version for the extension ms-python.debugpy. Cannot read properties of undefined (reading 'replace')
+2025-03-16 19:34:16.142 [error] Error while getting the latest version for the extension ms-python.python. Cannot read properties of undefined (reading 'replace')
+2025-03-16 19:34:16.142 [error] Error while getting the latest version for the extension pkief.material-icon-theme. Cannot read properties of undefined (reading 'replace')
+2025-03-16 19:34:16.560 [info] [perf] Render performance baseline is 34ms
+2025-03-16 19:34:16.703 [error] An unknown error occurred. Please consult the log for more details.
+2025-03-16 20:07:49.644 [error] ValueError: `column` parameter (61) is not in a valid range (0-60) for line 14 ('    frame[y_start:y_finish, x_start:x_finish, :] = [0, 0, 0]\n').: Error: ValueError: `column` parameter (61) is not in a valid range (0-60) for line 14 ('    frame[y_start:y_finish, x_start:x_finish, :] = [0, 0, 0]\n').
+	at ae (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1974693)
+	at oe (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1972653)
+	at Immediate.<anonymous> (/home/holelulu/.vscode-oss/extensions/ms-python.python-2025.2.0-universal/out/client/extension.js:2:1968947)
+	at process.processImmediate (node:internal/timers:483:21)

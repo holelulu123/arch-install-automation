@@ -37,7 +37,7 @@ mount $drive_part3 $dir_root
 mkdir $dir_boot
 mount $drive_part2 $dir_boot
 # Install Linux
-pacstrap $dir_root linux linux-firmware base nano
+pacstrap $dir_root linux linux-firmware base nano iwd
 
 genfstab -U $dir_root > $dir_root/etc/fstab
 
@@ -45,9 +45,6 @@ mount --bind /dev "$dir_root/dev"
 mount --bind /proc "$dir_root/proc"
 mount --bind /sys "$dir_root/sys"
 mount --bind /run "$dir_root/run"
-# Zone
-
-ln -sf $dir_root/usr/share/zoneinfo/Israel $dir_root/etc/localtime
 
 # keyboard Language
 cp "$dir_script/locale.gen" $dir_root/etc/

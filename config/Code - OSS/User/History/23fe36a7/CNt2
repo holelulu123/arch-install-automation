@@ -1,0 +1,12 @@
+
+output: build/main.o build/snake.o build/apple.o
+	g++ main.
+
+build/tile.o: src/tile.cpp
+	g++ -c src/tile.cpp
+
+build/snake.o: src/snake.cpp include/snake.h
+	g++ -c src/snake.cpp
+
+target: dependencies
+	action

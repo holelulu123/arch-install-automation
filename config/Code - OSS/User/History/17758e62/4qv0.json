@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "cStandard": "c17"
+        }
+    ],
+    "version": 4
+}

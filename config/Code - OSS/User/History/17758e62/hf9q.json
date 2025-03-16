@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "STM32",
+            "includePath": [
+                "/usr/lib/gcc/arm-none-eabi/**",
+                "/usr/arm-none-eabi/include/**",
+                "/home/holelulu/Documents/stm32l1/STM32CubeL0/Drivers/**",
+                "/home/holelulu/projects/stm32/inc"
+            ]
+        }
+    ],
+    "version": 4
+}

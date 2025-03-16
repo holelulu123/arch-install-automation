@@ -1,0 +1,80 @@
+2025-03-16 19:34:16.113 [info] [main] Log level: Info
+2025-03-16 19:34:16.113 [info] [main] Validating found git in: "git"
+2025-03-16 19:34:16.113 [info] [main] Using git "2.49.0" from "git"
+2025-03-16 19:34:16.113 [info] [Model][doInitialScan] Initial repository scan started
+2025-03-16 19:34:16.113 [info] > git rev-parse --show-toplevel [32ms]
+2025-03-16 19:34:16.113 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-03-16 19:34:16.113 [info] > git rev-parse --show-toplevel [23ms]
+2025-03-16 19:34:16.113 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-03-16 19:34:16.115 [info] > git rev-parse --show-toplevel [2ms]
+2025-03-16 19:34:16.115 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-03-16 19:34:16.116 [info] [Model][doInitialScan] Initial repository scan completed - repositories (0), closed repositories (0), parent repositories (0), unsafe repositories (0)
+2025-03-16 19:34:16.178 [info] > git rev-parse --show-toplevel [6ms]
+2025-03-16 19:34:16.178 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-03-16 20:14:43.257 [info] > git rev-parse --show-toplevel [2ms]
+2025-03-16 20:14:43.268 [info] > git rev-parse --git-dir --git-common-dir [2ms]
+2025-03-16 20:14:43.283 [info] [Model][openRepository] Opened repository: /home/holelulu/projects/analog_video
+2025-03-16 20:14:43.301 [info] [Git][getRemotes] No remotes found in the git config file
+2025-03-16 20:14:43.303 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [3ms]
+2025-03-16 20:14:43.303 [warning] [Git][getBranch] No such branch: master
+2025-03-16 20:14:43.304 [info] > git config --get commit.template [12ms]
+2025-03-16 20:14:43.324 [info] > git status -z -uall [12ms]
+2025-03-16 20:14:43.325 [info] > git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname) [3ms]
+2025-03-16 20:14:43.358 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [16ms]
+2025-03-16 20:14:43.359 [warning] [Git][getBranch] No such branch: master
+2025-03-16 20:14:43.359 [error] [GitHistoryProvider][resolveHEADMergeBase] Failed to resolve merge base for master: Error: No such branch: master.
+2025-03-16 20:14:43.362 [info] > git config --get commit.template [6ms]
+2025-03-16 20:14:43.371 [info] [Git][getRemotes] No remotes found in the git config file
+2025-03-16 20:14:43.372 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [1ms]
+2025-03-16 20:14:43.372 [warning] [Git][getBranch] No such branch: master
+2025-03-16 20:14:43.389 [info] > git status -z -uall [11ms]
+2025-03-16 20:14:43.389 [info] > git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname) [3ms]
+2025-03-16 20:14:43.810 [info] > git check-ignore -v -z --stdin [1ms]
+2025-03-16 20:14:57.547 [info] [Git][getRemotes] No remotes found in the git config file
+2025-03-16 20:14:57.549 [info] > git config --get commit.template [19ms]
+2025-03-16 20:14:57.550 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [4ms]
+2025-03-16 20:14:57.550 [warning] [Git][getBranch] No such branch: master
+2025-03-16 20:14:57.586 [info] > git status -z -uall [19ms]
+2025-03-16 20:14:57.589 [info] > git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname) [4ms]
+2025-03-16 20:15:10.101 [info] [Git][getRemotes] No remotes found in the git config file
+2025-03-16 20:15:10.102 [info] > git config --get commit.template [11ms]
+2025-03-16 20:15:10.102 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [2ms]
+2025-03-16 20:15:10.102 [warning] [Git][getBranch] No such branch: master
+2025-03-16 20:15:10.116 [info] > git status -z -uall [7ms]
+2025-03-16 20:15:10.118 [info] > git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname) [2ms]
+2025-03-16 20:15:10.439 [info] > git show --textconv :analog_video.py [8ms]
+2025-03-16 20:15:10.456 [info] > git show --textconv HEAD:analog_video.py [18ms]
+2025-03-16 20:15:10.456 [info] > git ls-files --stage -- analog_video.py [9ms]
+2025-03-16 20:15:10.474 [info] > git hash-object -t tree /dev/null [2ms]
+2025-03-16 20:15:10.475 [warning] [GitFileSystemProvider][readFile] File not found - git:/home/holelulu/projects/analog_video/analog_video.py.git?%7B%22path%22%3A%22%2Fhome%2Fholelulu%2Fprojects%2Fanalog_video%2Fanalog_video.py%22%2C%22ref%22%3A%22HEAD%22%7D
+2025-03-16 20:15:10.477 [info] > git cat-file -s 641da85922556c1b50136c4be1fc8952d50a0b59 [14ms]
+2025-03-16 20:15:10.481 [info] > git ls-tree -l HEAD -- analog_video.py [25ms]
+2025-03-16 20:15:10.481 [info] fatal: Not a valid object name HEAD
+2025-03-16 20:15:10.482 [warning] [GitFileSystemProvider][stat] File not found - git:/home/holelulu/projects/analog_video/analog_video.py.git?%7B%22path%22%3A%22%2Fhome%2Fholelulu%2Fprojects%2Fanalog_video%2Fanalog_video.py%22%2C%22ref%22%3A%22HEAD%22%7D
+2025-03-16 20:15:11.237 [info] [Git][getRemotes] No remotes found in the git config file
+2025-03-16 20:15:11.238 [info] > git config --get commit.template [18ms]
+2025-03-16 20:15:11.240 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [4ms]
+2025-03-16 20:15:11.240 [warning] [Git][getBranch] No such branch: master
+2025-03-16 20:15:11.272 [info] > git status -z -uall [17ms]
+2025-03-16 20:15:11.273 [info] > git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname) [3ms]
+2025-03-16 20:15:11.311 [info] > git ls-files --stage -- analog_video.py [2ms]
+2025-03-16 20:15:11.319 [info] > git cat-file -s 641da85922556c1b50136c4be1fc8952d50a0b59 [2ms]
+2025-03-16 20:15:11.329 [info] > git show --textconv :analog_video.py [2ms]
+2025-03-16 20:15:16.198 [info] > git ls-files --stage -- analog_video.py [2ms]
+2025-03-16 20:15:16.205 [info] > git cat-file -s 641da85922556c1b50136c4be1fc8952d50a0b59 [1ms]
+2025-03-16 20:15:16.215 [info] > git show --textconv :analog_video.py [2ms]
+2025-03-16 20:15:16.292 [info] [Git][getRemotes] No remotes found in the git config file
+2025-03-16 20:15:16.293 [info] > git config --get commit.template [7ms]
+2025-03-16 20:15:16.294 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [2ms]
+2025-03-16 20:15:16.294 [warning] [Git][getBranch] No such branch: master
+2025-03-16 20:15:16.307 [info] > git status -z -uall [7ms]
+2025-03-16 20:15:16.308 [info] > git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname) [1ms]
+2025-03-16 20:15:35.608 [info] > git log --format=%H%n%aN%n%aE%n%at%n%ct%n%P%n%D%n%B -z --shortstat --diff-merges=first-parent -n50 --skip=0 --topo-order --decorate=full --stdin [1ms]
+2025-03-16 20:15:35.608 [info] fatal: bad revision 'refs/heads/master'
+2025-03-16 20:15:35.609 [error] [GitHistoryProvider][provideHistoryItems] Failed to get history items with options '{"historyItemRefs":["refs/heads/master"],"limit":50,"skip":0}': Failed to execute git {
+  "exitCode": 128,
+  "gitCommand": "log",
+  "stdout": "",
+  "stderr": "fatal: bad revision 'refs/heads/master'\n"
+}
+2025-03-16 20:15:36.271 [info] > git check-ignore -v -z --stdin [2ms]

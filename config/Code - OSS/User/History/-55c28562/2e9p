@@ -1,0 +1,29 @@
+receiver_1_lat = 31.498890974766184
+receiver_1_lon = 34.804414382025286 
+
+receiver_2_lat = 31.488720250381718
+receiver_2_lon = 34.81917131535559
+
+receiver_3_lat = 31.505826171295062
+receiver_3_lon = 34.81090871869788
+
+# Tdoa Parameters
+max_distance = 5000
+fs = 30.72e6
+time = 0.4
+chunk_time = 0.01
+
+# Model Parameters
+batch_size = 40
+windows_per_batch = 0
+device_mapping_path = 'src/model/device_mapping.json'
+
+identification_checkpoint_path = "src/model/identification_best_model.pth"
+classification_checkpoint_path = "src/model/classification_best_model.pth"
+
+num_windows = 40
+
+# Gunicorn Parameters
+bind = "0.0.0.0:8000" 
+workers = 4 
+timeout = 30 

@@ -1,0 +1,8 @@
+{
+    "editor.fontFamily": "'Fira Code'",
+    "workbench.colorTheme": "Dracula Dark+",
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.fontLigatures": true,
+    "git.openRepositoryInParentFolders": "never",
+    "editor.minimap.enabled": false
+}

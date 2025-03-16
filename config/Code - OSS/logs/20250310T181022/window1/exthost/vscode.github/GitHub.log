@@ -1,0 +1,3 @@
+2025-03-10 16:10:26.260 [info] Log level: Info
+2025-03-10 16:10:26.500 [warning] [GitHubBranchProtectionProvider][updateRepositoryBranchProtection] Failed to update repository branch protection: No GitHub authentication session available.
+2025-03-10 22:53:37.180 [warning] [GitHubSourceControlHistoryItemDetailsProvider][_loadAssignableUsers] Failed to load assignable user(s) for holelulu123/stm32l072: Error: No GitHub authentication session available.
