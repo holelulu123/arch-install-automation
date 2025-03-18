@@ -5,9 +5,9 @@ set -x
 
 # Variables
 drive='/dev/sdX' # The device you want to install the arch on
-dir_script='/mnt/build/arch' # The location that the scripts and files exists
-hostname='holelulu'
-user='holelulu'
+dir_script="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+hostname='XXXXXX'
+user='XXXXXX'
 
 ################
 dir_boot='/mnt/usb/boot'
@@ -28,7 +28,7 @@ parted $drive --script mkpart primary xfs 511MiB 100%
 mkfs.fat -F32 $drive_part2
 
 # ext4 For Partition 3
-mkfs.xfs $drive_part3
+mkfs.xfs -f $drive_part3
 
 # Mount the Neccesary patitions
 mkdir -p $dir_root
@@ -98,11 +98,10 @@ pacstrap $dir_root amd-ucode intel-ucode
 chroot $dir_root mkinitcpio -P
 
 ln -s /dev/null $dir_root/etc/udev/rules.d/80-net-setup-link.rules
-pacstrap $dir_root $(cat $dir_script/packages.txt)
 
+mkdir -p $dir_root/home/$hostname/.config
 cp $dir_script/.xinitrc $dir_root/home/$hostname/
-cp -r $dir_script/xfce4 $dir_root/home/$hostname/.config/
-cp -r $dir_script/nano $dir_root/home/$hostname/.config/
-cp $dir_script/.bashrc $dir_root/home/$hostname/
+cp -r $dir_script/config/* $dir_root/home/$hostname/.config/
 
-umount --recursive $dir_root
+umount -fl $dir_boot
+umount -fl $dir_root
