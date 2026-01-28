@@ -1,5 +1,0 @@
-# Choose the minimum required version of cmake 
-cmake_minimum_required(VERSION X.XX)
-
-# Choose project name
-project(TestProject)

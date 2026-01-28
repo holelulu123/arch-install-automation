@@ -1,22 +1,138 @@
 #!/bin/bash
 
 set -e
-set -x
 
-# Variables
-drive='/dev/sdX' # The device you want to install the arch on
 dir_script="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-hostname='XXXXXX'
-user='XXXXXX'
 
 ################
 dir_boot='/mnt/usb/boot'
 dir_root='/mnt/usb'
-drive_part1="$drive"1
-drive_part2="$drive"2
-drive_part3="$drive"3
 
+# ===========================================
+# Cleanup Function (runs on exit/error)
+# ===========================================
+cleanup() {
+    set +x
+    echo ""
+    echo "Cleaning up..."
+    umount -fl $dir_boot 2>/dev/null || true
+    umount -fl $dir_root 2>/dev/null || true
+}
+trap cleanup EXIT
+
+# ===========================================
+# Pre-flight Checks
+# ===========================================
+echo "============================================"
+echo "       Arch Linux Installation Script"
+echo "============================================"
+echo ""
+
+# Check for internet connectivity
+echo "Checking internet connection..."
+if ! ping -c 1 -W 5 archlinux.org &>/dev/null; then
+    echo "Error: No internet connection detected."
+    echo "Please connect to the internet before running this script."
+    exit 1
+fi
+echo "Internet connection: OK"
+echo ""
+
+# ===========================================
+# Interactive Drive Selection
+# ===========================================
+echo "Available block devices:"
+echo ""
+lsblk -d -o NAME,SIZE,TYPE,MODEL
+echo ""
+
+while true; do
+    read -p "Enter the target drive (e.g., /dev/sda or /dev/nvme0n1): " drive
+    
+    if [ -z "$drive" ]; then
+        echo "Error: Drive path cannot be empty."
+        continue
+    fi
+    
+    if [ -b "$drive" ]; then
+        echo "Drive '$drive' found."
+        break
+    else
+        echo "Error: Device '$drive' does not exist. Please try again."
+    fi
+done
+
+# ===========================================
+# Interactive Username Selection
+# ===========================================
+echo ""
+while true; do
+    read -p "Enter the username (will also be used as hostname): " username
+    
+    if [ -z "$username" ]; then
+        echo "Error: Username cannot be empty."
+        continue
+    fi
+    
+    # Validate username (lowercase, no spaces, alphanumeric and underscore only)
+    if [[ "$username" =~ ^[a-z][a-z0-9_]*$ ]]; then
+        break
+    else
+        echo "Error: Username must start with a lowercase letter and contain only lowercase letters, numbers, and underscores."
+    fi
+done
+
+# ===========================================
+# Confirmation
+# ===========================================
+echo ""
+echo "============================================"
+echo "            Installation Summary"
+echo "============================================"
+echo "Target drive:    $drive"
+echo "Username:        $username"
+echo "Hostname:        $username"
+echo "============================================"
+echo ""
+echo "WARNING: This will ERASE ALL DATA on $drive!"
+echo ""
+
+while true; do
+    read -p "Are you sure you want to continue? (Y/N): " confirm
+    case "$confirm" in
+        [Yy])
+            echo "Starting installation..."
+            break
+            ;;
+        [Nn])
+            echo "Installation cancelled."
+            exit 0
+            ;;
+        *)
+            echo "Please enter Y or N."
+            ;;
+    esac
+done
+
+# Enable verbose mode after confirmation
+set -x
+
+# ===========================================
+# Partition Naming (NVMe vs Standard)
+# ===========================================
+if [[ "$drive" == *"nvme"* ]]; then
+    drive_part1="${drive}p1"
+    drive_part2="${drive}p2"
+    drive_part3="${drive}p3"
+else
+    drive_part1="${drive}1"
+    drive_part2="${drive}2"
+    drive_part3="${drive}3"
+fi
+
+# ===========================================
 # Disk Formatting for BIOS / UEFI
+# ===========================================
 parted $drive --script mklabel gpt
 parted $drive --script mkpart primary 1MiB 11MiB
 parted $drive --script set 1 bios_grub on
@@ -27,81 +143,148 @@ parted $drive --script mkpart primary xfs 511MiB 100%
 # FAT32 for Partition 2
 mkfs.fat -F32 $drive_part2
 
-# ext4 For Partition 3
+# XFS For Partition 3
 mkfs.xfs -f $drive_part3
 
-# Mount the Neccesary patitions
+# ===========================================
+# Mount the Necessary Partitions
+# ===========================================
 mkdir -p $dir_root
 mount $drive_part3 $dir_root
 
-mkdir $dir_boot
+mkdir -p $dir_boot
 mount $drive_part2 $dir_boot
-# Install Linux
-pacstrap $dir_root linux linux-firmware base nano iwd
+
+# ===========================================
+# Install Base System
+# ===========================================
+pacstrap $dir_root linux linux-firmware base neovim iwd git base-devel xfce4 xfce4-goodies xorg-server xorg-xinit
 
 genfstab -U $dir_root > $dir_root/etc/fstab
 
-mount --bind /dev "$dir_root/dev"
-mount --bind /proc "$dir_root/proc"
-mount --bind /sys "$dir_root/sys"
-mount --bind /run "$dir_root/run"
-
-# keyboard Language
+# ===========================================
+# Locale Configuration
+# ===========================================
 cp "$dir_script/locale.gen" $dir_root/etc/
 echo LANG=en_US.UTF-8 > $dir_root/etc/locale.conf
+arch-chroot $dir_root locale-gen
 
-# Time
-chroot $dir_root hwclock --systohc
+# ===========================================
+# Time Configuration
+# ===========================================
+arch-chroot $dir_root hwclock --systohc
 
-#User
-echo $hostname > $dir_root/etc/hostname
-cp "$dir_script/hosts" $dir_root/etc/
-chroot $dir_root passwd
+# ===========================================
+# Hostname and Hosts Configuration
+# ===========================================
+echo $username > $dir_root/etc/hostname
 
-# GRUB - Bootloader #
+# Generate hosts file dynamically
+cat > $dir_root/etc/hosts << EOF
+127.0.0.1  localhost
+::1        localhost
+127.0.1.1  ${username}.localdomain ${username}
+EOF
+
+arch-chroot $dir_root passwd
+
+# ===========================================
+# GRUB - Bootloader (BIOS + UEFI)
+# ===========================================
 pacstrap $dir_root grub efibootmgr
+
+# Install GRUB for UEFI
 arch-chroot $dir_root grub-install --target=x86_64-efi --efi-directory /boot --recheck --removable
+
+# Install GRUB for BIOS
+arch-chroot $dir_root grub-install --target=i386-pc $drive
+
+# Generate GRUB config
 arch-chroot $dir_root grub-mkconfig -o /boot/grub/grub.cfg
 
+# ===========================================
 # Network Configuration
+# ===========================================
 cp "$dir_script/10-ethernet.network" $dir_root/etc/systemd/network/
-sudo systemctl --root=$dir_root enable systemd-networkd.service
-pacstrap $dir_root iwd
+systemctl --root=$dir_root enable systemd-networkd.service
 systemctl --root=$dir_root enable iwd.service
 cp "$dir_script/20-wifi.network" $dir_root/etc/systemd/network/
 systemctl --root=$dir_root enable systemd-resolved.service
 
-ln -sf /run/systemd/resolve/stub-resolv.conf $dir_root/etc/resolv.conf # Outside of chroot
+ln -sf /run/systemd/resolve/stub-resolv.conf $dir_root/etc/resolv.conf
 
 systemctl --root=$dir_root enable systemd-timesyncd.service
 
-# User configuration
-chroot "$dir_root" useradd -m "$user"
-chroot "$dir_root" passwd $user
-chroot "$dir_root" groupadd -f wheel
-chroot "$dir_root" usermod -aG wheel "$user"
+# ===========================================
+# User Configuration
+# ===========================================
+arch-chroot $dir_root useradd -m "$username"
+arch-chroot $dir_root passwd $username
+arch-chroot $dir_root groupadd -f wheel
+arch-chroot $dir_root usermod -aG wheel "$username"
 
 pacstrap $dir_root sudo
 cp "$dir_script/10-sudo" $dir_root/etc/sudoers.d/
 
 # Sudo User configuration
-chroot "$dir_root" groupadd -f sudo
-chroot "$dir_root" usermod -aG sudo "$user"
+arch-chroot $dir_root groupadd -f sudo
+arch-chroot $dir_root usermod -aG sudo "$username"
 
 pacstrap $dir_root polkit
 
-mkdir -p $dir_root/etc/systemd/journald.conf.d
-cp $dir_script/10-volatile.conf $dir_root/etc/systemd/journald.conf.d/
-
+# ===========================================
 # Microcode
+# ===========================================
 pacstrap $dir_root amd-ucode intel-ucode
-chroot $dir_root mkinitcpio -P
+arch-chroot $dir_root mkinitcpio -P
 
-ln -s /dev/null $dir_root/etc/udev/rules.d/80-net-setup-link.rules
+# ===========================================
+# Predictable Network Interface Names
+# ===========================================
+mkdir -p $dir_root/etc/udev/rules.d
+ln -sf /dev/null $dir_root/etc/udev/rules.d/80-net-setup-link.rules
 
-mkdir -p $dir_root/home/$hostname/.config
-cp $dir_script/.xinitrc $dir_root/home/$hostname/
-cp -r $dir_script/config/* $dir_root/home/$hostname/.config/
+# ===========================================
+# Copy User Configuration Files
+# ===========================================
+mkdir -p $dir_root/home/$username/.config
+cp $dir_script/.xinitrc $dir_root/home/$username/
+cp -r $dir_script/config/* $dir_root/home/$username/.config/
+
+# Fix file ownership
+arch-chroot $dir_root chown -R $username:$username /home/$username
+
+# ===========================================
+# Install yay (AUR Helper)
+# ===========================================
+arch-chroot $dir_root bash -c "
+    cd /tmp
+    sudo -u $username git clone https://aur.archlinux.org/yay.git
+    cd yay
+    sudo -u $username makepkg -si --noconfirm
+    cd /tmp
+    rm -rf yay
+"
+
+# ===========================================
+# Install apple-fonts from AUR
+# ===========================================
+arch-chroot $dir_root sudo -u $username yay -S --noconfirm apple-fonts
+
+# ===========================================
+# Cleanup and Unmount
+# ===========================================
+# Disable trap before final unmount to avoid duplicate cleanup
+trap - EXIT
 
 umount -fl $dir_boot
 umount -fl $dir_root
+
+set +x
+echo ""
+echo "============================================"
+echo "       Installation Complete!"
+echo "============================================"
+echo "You can now reboot into your new Arch Linux system."
+echo "Username: $username"
+echo "============================================"

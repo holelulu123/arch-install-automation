@@ -1,9 +1,0 @@
-# Compiler
-CXX = g++
-
-# Compiler flags
-CXXFLAGS = -Wall -g
-
-# Target executable
-TARGET = main
-

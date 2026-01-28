@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "chrono": "cpp",
-        "fstream": "cpp",
-        "complex": "cpp"
-    }
-}
