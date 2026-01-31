@@ -1,0 +1,11 @@
+gruntfuggly.todo-tree
+ianandhum.protobuf-support
+llvm-vs-code-extensions.vscode-clangd
+mads-hartmann.bash-ide-vscode
+mateuszdrewniak.theme-dracula-dark-plus
+ms-python.debugpy
+ms-python.python
+ms-python.vscode-python-envs
+pkief.material-icon-theme
+twxs.cmake
+zixuanwang.linkerscript

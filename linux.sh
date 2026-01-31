@@ -158,7 +158,24 @@ mount $drive_part2 $dir_boot
 # ===========================================
 # Install Base System
 # ===========================================
-pacstrap $dir_root linux linux-firmware base neovim iwd git base-devel xfce4 xfce4-goodies xorg-server xorg-xinit
+pacstrap $dir_root linux linux-firmware base neovim iwd git base-devel \
+    xfce4 xfce4-goodies xorg-server xorg-xinit \
+    lightdm lightdm-gtk-greeter \
+    firefox \
+    pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber \
+    ttf-fira-code ttf-liberation ttf-dejavu \
+    thunar-archive-plugin thunar-media-tags-plugin file-roller \
+    gvfs gvfs-mtp \
+    htop btop \
+    man-db man-pages \
+    openssh \
+    tmux \
+    zsh \
+    wget curl \
+    ripgrep fd \
+    unzip zip p7zip \
+    tree \
+    rsync
 
 genfstab -U $dir_root > $dir_root/etc/fstab
 
@@ -216,6 +233,11 @@ ln -sf /run/systemd/resolve/stub-resolv.conf $dir_root/etc/resolv.conf
 systemctl --root=$dir_root enable systemd-timesyncd.service
 
 # ===========================================
+# Enable LightDM Display Manager
+# ===========================================
+systemctl --root=$dir_root enable lightdm.service
+
+# ===========================================
 # User Configuration
 # ===========================================
 arch-chroot $dir_root useradd -m "$username"
@@ -251,6 +273,12 @@ mkdir -p $dir_root/home/$username/.config
 cp $dir_script/.xinitrc $dir_root/home/$username/
 cp -r $dir_script/config/* $dir_root/home/$username/.config/
 
+# ===========================================
+# Copy Wallpaper
+# ===========================================
+mkdir -p $dir_root/usr/share/backgrounds
+cp $dir_script/wallpapers/monterey.png $dir_root/usr/share/backgrounds/
+
 # Fix file ownership
 arch-chroot $dir_root chown -R $username:$username /home/$username
 
@@ -270,6 +298,18 @@ arch-chroot $dir_root bash -c "
 # Install apple-fonts from AUR
 # ===========================================
 arch-chroot $dir_root sudo -u $username yay -S --noconfirm apple-fonts
+
+# ===========================================
+# Install VS Code and Extensions
+# ===========================================
+# Copy VS Code setup scripts to user home
+cp -r $dir_script/vscode-config $dir_root/home/$username/
+
+# Run VS Code setup (installs VS Code, extensions, and configures)
+arch-chroot $dir_root sudo -u $username bash /home/$username/vscode-config/scripts/setup.sh
+
+# Fix ownership
+arch-chroot $dir_root chown -R $username:$username /home/$username/vscode-config
 
 # ===========================================
 # Cleanup and Unmount
