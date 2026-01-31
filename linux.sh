@@ -286,6 +286,7 @@ arch-chroot $dir_root chown -R $username:$username /home/$username
 # ===========================================
 # Install yay (AUR Helper)
 # ===========================================
+echo "Installing yay (AUR Helper)"
 arch-chroot $dir_root bash -c "
     cd /tmp
     sudo -u $username git clone https://aur.archlinux.org/yay.git
@@ -294,11 +295,6 @@ arch-chroot $dir_root bash -c "
     cd /tmp
     rm -rf yay
 "
-
-# ===========================================
-# Install apple-fonts from AUR
-# ===========================================
-arch-chroot $dir_root sudo -u $username yay -S --noconfirm apple-fonts
 
 # ===========================================
 # Install VS Code and Extensions
