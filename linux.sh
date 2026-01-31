@@ -211,13 +211,36 @@ arch-chroot $dir_root passwd
 # ===========================================
 pacstrap $dir_root grub efibootmgr
 
+# Ensure all pending writes are flushed
+sync
+sleep 3
+
 # Install GRUB for UEFI
-arch-chroot $dir_root grub-install --target=x86_64-efi --efi-directory /boot --recheck --removable
+echo "Installing GRUB for UEFI..."
+if arch-chroot $dir_root timeout 30 grub-install --target=x86_64-efi --efi-directory /boot --recheck --removable; then
+    echo "UEFI GRUB installed successfully"
+else
+    echo "UEFI GRUB install failed or timed out (normal if not UEFI system)"
+fi
+
+# Force sync and wait for device to settle
+sync
+sleep 5
 
 # Install GRUB for BIOS
-arch-chroot $dir_root grub-install --target=i386-pc $drive
+echo "Installing GRUB for BIOS..."
+if arch-chroot $dir_root timeout 30 grub-install --target=i386-pc $drive; then
+    echo "BIOS GRUB installed successfully"
+else
+    echo "BIOS GRUB install failed or timed out (normal if UEFI-only system)"
+fi
+
+# Final sync before config generation
+sync
+sleep 3
 
 # Generate GRUB config
+echo "Generating GRUB config..."
 arch-chroot $dir_root grub-mkconfig -o /boot/grub/grub.cfg
 
 # ===========================================
