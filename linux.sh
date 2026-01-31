@@ -175,7 +175,8 @@ pacstrap $dir_root linux linux-firmware base neovim iwd git base-devel \
     ripgrep fd \
     unzip zip p7zip \
     tree \
-    rsync
+    rsync \
+    nload iotop
 
 genfstab -U $dir_root > $dir_root/etc/fstab
 
