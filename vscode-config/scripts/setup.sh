@@ -19,10 +19,13 @@ echo "======================================"
 check_arch() {
     if [ ! -f /etc/arch-release ]; then
         echo -e "${YELLOW}Warning: This script is designed for Arch Linux${NC}"
-        read -p "Continue anyway? (y/N): " -n 1 -r
-        echo
-        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            exit 1
+        # Skip interactive prompt when running non-interactively (e.g., in chroot)
+        if [ -t 0 ]; then
+            read -p "Continue anyway? (y/N): " -n 1 -r
+            echo
+            if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+                exit 1
+            fi
         fi
     fi
 }

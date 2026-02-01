@@ -1,7 +1,7 @@
 <?xml version="1.1" encoding="UTF-8"?>
 
 <channel name="xfce4-terminal" version="1.0">
-  <property name="font-name" type="string" value="SourceCodeVF Bold Italic 14"/>
+  <property name="font-name" type="string" value="Fira Code 12"/>
   <property name="cell-width-scale" type="double" value="1"/>
   <property name="cell-height-scale" type="double" value="1"/>
   <property name="font-use-system" type="bool" value="false"/>

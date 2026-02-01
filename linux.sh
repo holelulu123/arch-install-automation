@@ -26,6 +26,7 @@ cleanup() {
     set +x
     echo ""
     echo -e "${YELLOW}Cleaning up...${NC}"
+    sync 2>/dev/null || true
     umount -fl $dir_boot 2>/dev/null || true
     umount -fl $dir_root 2>/dev/null || true
 }
@@ -165,6 +166,28 @@ while true; do
     esac
 done
 
+# ===========================================
+# Verify required files exist
+# ===========================================
+missing_files=()
+[ ! -f "$dir_script/locale.gen" ] && missing_files+=("locale.gen")
+[ ! -f "$dir_script/10-ethernet.network" ] && missing_files+=("10-ethernet.network")
+[ ! -f "$dir_script/20-wifi.network" ] && missing_files+=("20-wifi.network")
+[ ! -f "$dir_script/10-sudo" ] && missing_files+=("10-sudo")
+[ ! -f "$dir_script/.xinitrc" ] && missing_files+=(".xinitrc")
+[ ! -d "$dir_script/config" ] && missing_files+=("config/")
+[ ! -f "$dir_script/wallpapers/monterey.png" ] && missing_files+=("wallpapers/monterey.png")
+[ ! -d "$dir_script/vscode-config" ] && missing_files+=("vscode-config/")
+
+if [ ${#missing_files[@]} -gt 0 ]; then
+    echo -e "${RED}Error: Missing required files:${NC}"
+    for f in "${missing_files[@]}"; do
+        echo -e "${RED}  - $f${NC}"
+    done
+    exit 1
+fi
+echo -e "${GREEN}All required files found.${NC}"
+
 # Enable verbose mode after confirmation
 set -x
 
@@ -234,7 +257,9 @@ pacstrap $dir_root linux linux-firmware base neovim iwd git base-devel \
     unzip zip p7zip \
     tree \
     rsync \
-    nload iotop
+    nload iotop \
+    usbutils \
+    nano
 
 # Flush writes after large pacstrap
 sync
@@ -332,6 +357,7 @@ arch-chroot $dir_root usermod -aG wheel "$username"
 
 pacstrap $dir_root sudo
 cp "$dir_script/10-sudo" $dir_root/etc/sudoers.d/
+chmod 440 $dir_root/etc/sudoers.d/10-sudo
 
 # Sudo User configuration
 arch-chroot $dir_root groupadd -f sudo
@@ -344,6 +370,9 @@ pacstrap $dir_root polkit
 # ===========================================
 pacstrap $dir_root amd-ucode intel-ucode
 arch-chroot $dir_root mkinitcpio -P
+
+# Regenerate GRUB config to include microcode
+arch-chroot $dir_root grub-mkconfig -o /boot/grub/grub.cfg
 
 # ===========================================
 # Predictable Network Interface Names
@@ -363,6 +392,7 @@ cp -r $dir_script/config/* $dir_root/home/$username/.config/
 # ===========================================
 mkdir -p $dir_root/usr/share/backgrounds
 cp $dir_script/wallpapers/monterey.png $dir_root/usr/share/backgrounds/
+ls -la $dir_root/usr/share/backgrounds/monterey.png
 
 # Fix file ownership
 arch-chroot $dir_root chown -R $username:$username /home/$username
@@ -375,7 +405,8 @@ arch-chroot $dir_root bash -c "
     cd /tmp
     sudo -u $username git clone https://aur.archlinux.org/yay.git
     cd yay
-    sudo -u $username makepkg -si --noconfirm
+    sudo -u $username makepkg --noconfirm
+    pacman -U --noconfirm yay-*.pkg.tar.zst
     cd /tmp
     rm -rf yay
 "
@@ -383,20 +414,26 @@ arch-chroot $dir_root bash -c "
 # ===========================================
 # Install VS Code and Extensions
 # ===========================================
+# Install VS Code package
+arch-chroot $dir_root pacman -S --needed --noconfirm code
+
 # Copy VS Code setup scripts to user home
 cp -r $dir_script/vscode-config $dir_root/home/$username/
 
-# Run VS Code setup (installs VS Code, extensions, and configures)
-arch-chroot $dir_root sudo -u $username bash /home/$username/vscode-config/scripts/setup.sh
+# Run VS Code setup (extensions may fail in chroot, that's OK)
+arch-chroot $dir_root sudo -u $username bash /home/$username/vscode-config/scripts/setup.sh || true
 
-# Fix ownership
-arch-chroot $dir_root chown -R $username:$username /home/$username/vscode-config
+# Fix ownership for all user files (including VS Code config created during setup)
+arch-chroot $dir_root chown -R $username:$username /home/$username
 
 # ===========================================
 # Cleanup and Unmount
 # ===========================================
 # Disable trap before final unmount to avoid duplicate cleanup
 trap - EXIT
+
+# Ensure all writes are flushed before unmounting
+sync
 
 umount -fl $dir_boot
 umount -fl $dir_root
