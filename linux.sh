@@ -4,6 +4,17 @@ set -e
 
 dir_script="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# ===========================================
+# Colors
+# ===========================================
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+BOLD='\033[1m'
+NC='\033[0m' # No Color
+
 ################
 dir_boot='/mnt/usb/boot'
 dir_root='/mnt/usb'
@@ -14,7 +25,7 @@ dir_root='/mnt/usb'
 cleanup() {
     set +x
     echo ""
-    echo "Cleaning up..."
+    echo -e "${YELLOW}Cleaning up...${NC}"
     umount -fl $dir_boot 2>/dev/null || true
     umount -fl $dir_root 2>/dev/null || true
 }
@@ -23,42 +34,42 @@ trap cleanup EXIT
 # ===========================================
 # Pre-flight Checks
 # ===========================================
-echo "============================================"
-echo "       Arch Linux Installation Script"
-echo "============================================"
+echo -e "${BOLD}${CYAN}============================================${NC}"
+echo -e "${BOLD}${CYAN}       Arch Linux Installation Script${NC}"
+echo -e "${BOLD}${CYAN}============================================${NC}"
 echo ""
 
 # Check for internet connectivity
-echo "Checking internet connection..."
+echo -e "${BLUE}Checking internet connection...${NC}"
 if ! ping -c 1 -W 5 archlinux.org &>/dev/null; then
-    echo "Error: No internet connection detected."
-    echo "Please connect to the internet before running this script."
+    echo -e "${RED}Error: No internet connection detected.${NC}"
+    echo -e "${RED}Please connect to the internet before running this script.${NC}"
     exit 1
 fi
-echo "Internet connection: OK"
+echo -e "${GREEN}Internet connection: OK${NC}"
 echo ""
 
 # ===========================================
 # Interactive Drive Selection
 # ===========================================
-echo "Available block devices:"
+echo -e "${BOLD}${YELLOW}Available block devices:${NC}"
 echo ""
 lsblk -d -o NAME,SIZE,TYPE,MODEL
 echo ""
 
 while true; do
-    read -p "Enter the target drive (e.g., /dev/sda or /dev/nvme0n1): " drive
-    
+    read -p $'\033[1;34mEnter the target drive (e.g., /dev/sda or /dev/nvme0n1): \033[0m' drive
+
     if [ -z "$drive" ]; then
-        echo "Error: Drive path cannot be empty."
+        echo -e "${RED}Error: Drive path cannot be empty.${NC}"
         continue
     fi
-    
+
     if [ -b "$drive" ]; then
-        echo "Drive '$drive' found."
+        echo -e "${GREEN}Drive '$drive' found.${NC}"
         break
     else
-        echo "Error: Device '$drive' does not exist. Please try again."
+        echo -e "${RED}Error: Device '$drive' does not exist. Please try again.${NC}"
     fi
 done
 
@@ -67,18 +78,58 @@ done
 # ===========================================
 echo ""
 while true; do
-    read -p "Enter the username (will also be used as hostname): " username
-    
+    read -p $'\033[1;34mEnter the username (will also be used as hostname): \033[0m' username
+
     if [ -z "$username" ]; then
-        echo "Error: Username cannot be empty."
+        echo -e "${RED}Error: Username cannot be empty.${NC}"
         continue
     fi
-    
+
     # Validate username (lowercase, no spaces, alphanumeric and underscore only)
     if [[ "$username" =~ ^[a-z][a-z0-9_]*$ ]]; then
         break
     else
-        echo "Error: Username must start with a lowercase letter and contain only lowercase letters, numbers, and underscores."
+        echo -e "${RED}Error: Username must start with a lowercase letter and contain only lowercase letters, numbers, and underscores.${NC}"
+    fi
+done
+
+# ===========================================
+# Password Collection
+# ===========================================
+echo ""
+while true; do
+    read -s -p $'\033[1;34mEnter root password: \033[0m' root_password
+    echo ""
+    read -s -p $'\033[1;34mConfirm root password: \033[0m' root_password_confirm
+    echo ""
+
+    if [ -z "$root_password" ]; then
+        echo -e "${RED}Error: Password cannot be empty.${NC}"
+        continue
+    fi
+
+    if [ "$root_password" = "$root_password_confirm" ]; then
+        break
+    else
+        echo -e "${RED}Error: Passwords do not match. Please try again.${NC}"
+    fi
+done
+
+while true; do
+    read -s -p $'\033[1;34mEnter password for '"$username"$': \033[0m' user_password
+    echo ""
+    read -s -p $'\033[1;34mConfirm password for '"$username"$': \033[0m' user_password_confirm
+    echo ""
+
+    if [ -z "$user_password" ]; then
+        echo -e "${RED}Error: Password cannot be empty.${NC}"
+        continue
+    fi
+
+    if [ "$user_password" = "$user_password_confirm" ]; then
+        break
+    else
+        echo -e "${RED}Error: Passwords do not match. Please try again.${NC}"
     fi
 done
 
@@ -86,36 +137,43 @@ done
 # Confirmation
 # ===========================================
 echo ""
-echo "============================================"
-echo "            Installation Summary"
-echo "============================================"
-echo "Target drive:    $drive"
-echo "Username:        $username"
-echo "Hostname:        $username"
-echo "============================================"
+echo -e "${BOLD}${CYAN}============================================${NC}"
+echo -e "${BOLD}${CYAN}            Installation Summary${NC}"
+echo -e "${BOLD}${CYAN}============================================${NC}"
+echo -e "${BOLD}Target drive:${NC}    $drive"
+echo -e "${BOLD}Username:${NC}        $username"
+echo -e "${BOLD}Hostname:${NC}        $username"
+echo -e "${BOLD}${CYAN}============================================${NC}"
 echo ""
-echo "WARNING: This will ERASE ALL DATA on $drive!"
+echo -e "${BOLD}${RED}WARNING: This will ERASE ALL DATA on $drive!${NC}"
 echo ""
 
 while true; do
-    read -p "Are you sure you want to continue? (Y/N): " confirm
+    read -p $'\033[1;33mAre you sure you want to continue? (Y/N): \033[0m' confirm
     case "$confirm" in
         [Yy])
-            echo "Starting installation..."
+            echo -e "${GREEN}Starting installation...${NC}"
             break
             ;;
         [Nn])
-            echo "Installation cancelled."
+            echo -e "${YELLOW}Installation cancelled.${NC}"
             exit 0
             ;;
         *)
-            echo "Please enter Y or N."
+            echo -e "${RED}Please enter Y or N.${NC}"
             ;;
     esac
 done
 
 # Enable verbose mode after confirmation
 set -x
+
+# ===========================================
+# Reduce write buffering for USB drives
+# Prevents long sync hangs by forcing frequent smaller flushes
+# ===========================================
+echo 100000000 > /proc/sys/vm/dirty_bytes
+echo 50000000 > /proc/sys/vm/dirty_background_bytes
 
 # ===========================================
 # Partition Naming (NVMe vs Standard)
@@ -138,13 +196,13 @@ parted $drive --script mkpart primary 1MiB 11MiB
 parted $drive --script set 1 bios_grub on
 parted $drive --script mkpart primary fat32 11MiB 511MiB
 parted $drive --script set 2 esp on
-parted $drive --script mkpart primary xfs 511MiB 100%
+parted $drive --script mkpart primary ext4 511MiB 100%
 
 # FAT32 for Partition 2
 mkfs.fat -F32 $drive_part2
 
-# XFS For Partition 3
-mkfs.xfs -f $drive_part3
+# ext4 For Partition 3
+mkfs.ext4 -F $drive_part3
 
 # ===========================================
 # Mount the Necessary Partitions
@@ -178,6 +236,9 @@ pacstrap $dir_root linux linux-firmware base neovim iwd git base-devel \
     rsync \
     nload iotop
 
+# Flush writes after large pacstrap
+sync
+
 genfstab -U $dir_root > $dir_root/etc/fstab
 
 # ===========================================
@@ -204,7 +265,7 @@ cat > $dir_root/etc/hosts << EOF
 127.0.1.1  ${username}.localdomain ${username}
 EOF
 
-arch-chroot $dir_root passwd
+echo "root:$root_password" | arch-chroot $dir_root chpasswd
 
 # ===========================================
 # GRUB - Bootloader (BIOS + UEFI)
@@ -265,7 +326,7 @@ systemctl --root=$dir_root enable lightdm.service
 # User Configuration
 # ===========================================
 arch-chroot $dir_root useradd -m "$username"
-arch-chroot $dir_root passwd $username
+echo "$username:$user_password" | arch-chroot $dir_root chpasswd
 arch-chroot $dir_root groupadd -f wheel
 arch-chroot $dir_root usermod -aG wheel "$username"
 
@@ -342,9 +403,9 @@ umount -fl $dir_root
 
 set +x
 echo ""
-echo "============================================"
-echo "       Installation Complete!"
-echo "============================================"
-echo "You can now reboot into your new Arch Linux system."
-echo "Username: $username"
-echo "============================================"
+echo -e "${BOLD}${GREEN}============================================${NC}"
+echo -e "${BOLD}${GREEN}       Installation Complete!${NC}"
+echo -e "${BOLD}${GREEN}============================================${NC}"
+echo -e "You can now reboot into your new Arch Linux system."
+echo -e "${BOLD}Username:${NC} $username"
+echo -e "${BOLD}${GREEN}============================================${NC}"
