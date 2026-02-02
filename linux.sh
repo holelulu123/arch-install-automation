@@ -178,6 +178,9 @@ missing_files=()
 [ ! -d "$dir_script/config" ] && missing_files+=("config/")
 [ ! -f "$dir_script/wallpapers/monterey.png" ] && missing_files+=("wallpapers/monterey.png")
 [ ! -d "$dir_script/vscode-config" ] && missing_files+=("vscode-config/")
+[ ! -f "$dir_script/vscode-config/config/settings.json" ] && missing_files+=("vscode-config/config/settings.json")
+[ ! -f "$dir_script/vscode-config/config/keybindings.json" ] && missing_files+=("vscode-config/config/keybindings.json")
+[ ! -f "$dir_script/verify-install.sh" ] && missing_files+=("verify-install.sh")
 
 if [ ${#missing_files[@]} -gt 0 ]; then
     echo -e "${RED}Error: Missing required files:${NC}"
@@ -188,7 +191,10 @@ if [ ${#missing_files[@]} -gt 0 ]; then
 fi
 echo -e "${GREEN}All required files found.${NC}"
 
-# Enable verbose mode after confirmation
+# Enable verbose mode after confirmation and log to file
+LOGFILE="$dir_script/install-$(date +%Y%m%d-%H%M%S).log"
+echo "Logging to: $LOGFILE"
+exec > >(tee -a "$LOGFILE") 2>&1
 set -x
 
 # ===========================================
@@ -348,9 +354,35 @@ systemctl --root=$dir_root enable systemd-timesyncd.service
 systemctl --root=$dir_root enable lightdm.service
 
 # ===========================================
+# Setup /etc/skel (skeleton for new users)
+# Files here are copied to home directory when user is created
+# ===========================================
+mkdir -p $dir_root/etc/skel/.config
+cp $dir_script/.xinitrc $dir_root/etc/skel/
+cp -r $dir_script/config/* $dir_root/etc/skel/.config/
+
+# VS Code config (pre-create directory structure)
+mkdir -p $dir_root/etc/skel/.config/Code/User
+cp $dir_script/vscode-config/config/settings.json $dir_root/etc/skel/.config/Code/User/
+cp $dir_script/vscode-config/config/keybindings.json $dir_root/etc/skel/.config/Code/User/
+
+# VS Code setup scripts (user can run manually for extensions)
+cp -r $dir_script/vscode-config $dir_root/etc/skel/
+
+echo "Skeleton directory contents:"
+find $dir_root/etc/skel -type f
+echo "Verifying skel files..."
+ls -la $dir_root/etc/skel/.config/xfce4/terminal/terminalrc || echo "WARNING: terminalrc not in skel"
+ls -la $dir_root/etc/skel/.config/Code/User/settings.json || echo "WARNING: VS Code settings not in skel"
+sync
+
+# ===========================================
 # User Configuration
 # ===========================================
 arch-chroot $dir_root useradd -m "$username"
+echo "Verifying user home was created with skel contents..."
+ls -la $dir_root/home/$username/
+ls -la $dir_root/home/$username/.config/ || echo "WARNING: .config not copied from skel"
 echo "$username:$user_password" | arch-chroot $dir_root chpasswd
 arch-chroot $dir_root groupadd -f wheel
 arch-chroot $dir_root usermod -aG wheel "$username"
@@ -358,6 +390,9 @@ arch-chroot $dir_root usermod -aG wheel "$username"
 pacstrap $dir_root sudo
 cp "$dir_script/10-sudo" $dir_root/etc/sudoers.d/
 chmod 440 $dir_root/etc/sudoers.d/10-sudo
+echo "Sudoers file:"
+ls -la $dir_root/etc/sudoers.d/10-sudo
+sync
 
 # Sudo User configuration
 arch-chroot $dir_root groupadd -f sudo
@@ -381,50 +416,128 @@ mkdir -p $dir_root/etc/udev/rules.d
 ln -sf /dev/null $dir_root/etc/udev/rules.d/80-net-setup-link.rules
 
 # ===========================================
-# Copy User Configuration Files
-# ===========================================
-mkdir -p $dir_root/home/$username/.config
-cp $dir_script/.xinitrc $dir_root/home/$username/
-cp -r $dir_script/config/* $dir_root/home/$username/.config/
-
-# ===========================================
-# Copy Wallpaper
+# Copy Wallpaper (system-wide)
 # ===========================================
 mkdir -p $dir_root/usr/share/backgrounds
 cp $dir_script/wallpapers/monterey.png $dir_root/usr/share/backgrounds/
+echo "Wallpaper copied:"
 ls -la $dir_root/usr/share/backgrounds/monterey.png
-
-# Fix file ownership
-arch-chroot $dir_root chown -R $username:$username /home/$username
+sync
 
 # ===========================================
 # Install yay (AUR Helper)
 # ===========================================
 echo "Installing yay (AUR Helper)"
 arch-chroot $dir_root bash -c "
+    set -e
     cd /tmp
+    rm -rf yay
     sudo -u $username git clone https://aur.archlinux.org/yay.git
     cd yay
     sudo -u $username makepkg --noconfirm
     pacman -U --noconfirm yay-*.pkg.tar.zst
     cd /tmp
     rm -rf yay
-"
+" || echo "WARNING: yay installation failed"
+
+# Verify yay installed
+if arch-chroot $dir_root which yay; then
+    echo "yay installed successfully"
+else
+    echo "ERROR: yay was NOT installed"
+fi
+sync
 
 # ===========================================
-# Install VS Code and Extensions
+# Install VS Code
 # ===========================================
-# Install VS Code package
+echo "Installing VS Code..."
 arch-chroot $dir_root pacman -S --needed --noconfirm code
+echo "VS Code installed:"
+arch-chroot $dir_root pacman -Qi code | head -3
+sync
+# Note: VS Code config and setup scripts are in /etc/skel and were copied during user creation
+# User can run ~/vscode-config/scripts/setup.sh after login to install extensions
 
-# Copy VS Code setup scripts to user home
-cp -r $dir_script/vscode-config $dir_root/home/$username/
-
-# Run VS Code setup (extensions may fail in chroot, that's OK)
-arch-chroot $dir_root sudo -u $username bash /home/$username/vscode-config/scripts/setup.sh || true
+# Copy verification script
+cp $dir_script/verify-install.sh $dir_root/home/$username/
+chmod +x $dir_root/home/$username/verify-install.sh
 
 # Fix ownership for all user files (including VS Code config created during setup)
 arch-chroot $dir_root chown -R $username:$username /home/$username
+
+# ===========================================
+# Final Verification Before Unmount
+# ===========================================
+echo ""
+echo "=== FINAL VERIFICATION ==="
+echo "Checking critical files exist before unmount..."
+
+verify_fail=0
+
+# Check wallpaper
+if [ -f "$dir_root/usr/share/backgrounds/monterey.png" ]; then
+    echo "[OK] Wallpaper exists"
+else
+    echo "[FAIL] Wallpaper MISSING"
+    verify_fail=1
+fi
+
+# Check sudoers
+if [ -f "$dir_root/etc/sudoers.d/10-sudo" ]; then
+    echo "[OK] Sudoers file exists"
+else
+    echo "[FAIL] Sudoers file MISSING"
+    verify_fail=1
+fi
+
+# Check user home
+if [ -d "$dir_root/home/$username/.config" ]; then
+    echo "[OK] User .config exists"
+    ls -la $dir_root/home/$username/.config/
+else
+    echo "[FAIL] User .config MISSING"
+    verify_fail=1
+fi
+
+# Check VS Code config
+if [ -f "$dir_root/home/$username/.config/Code/User/settings.json" ]; then
+    echo "[OK] VS Code settings exist"
+else
+    echo "[FAIL] VS Code settings MISSING"
+    verify_fail=1
+fi
+
+# Check XFCE terminal config
+if [ -f "$dir_root/home/$username/.config/xfce4/terminal/terminalrc" ]; then
+    echo "[OK] XFCE terminal config exists"
+else
+    echo "[FAIL] XFCE terminal config MISSING"
+    verify_fail=1
+fi
+
+# Check yay
+if arch-chroot $dir_root which yay &>/dev/null; then
+    echo "[OK] yay is installed"
+else
+    echo "[FAIL] yay NOT installed"
+    verify_fail=1
+fi
+
+# Check VS Code
+if arch-chroot $dir_root which code &>/dev/null; then
+    echo "[OK] VS Code is installed"
+else
+    echo "[FAIL] VS Code NOT installed"
+    verify_fail=1
+fi
+
+echo "=== END VERIFICATION ==="
+echo ""
+
+if [ $verify_fail -eq 1 ]; then
+    echo -e "${RED}WARNING: Some verifications failed! Check output above.${NC}"
+fi
 
 # ===========================================
 # Cleanup and Unmount
@@ -433,6 +546,9 @@ arch-chroot $dir_root chown -R $username:$username /home/$username
 trap - EXIT
 
 # Ensure all writes are flushed before unmounting
+echo "Syncing all writes to disk..."
+sync
+sleep 2
 sync
 
 umount -fl $dir_boot
