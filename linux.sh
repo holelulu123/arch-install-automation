@@ -243,13 +243,18 @@ mkdir -p $dir_boot
 mount $drive_part2 $dir_boot
 
 # ===========================================
-# Update Mirrors (get fastest mirrors)
+# Update Mirrors (use reliable mirrors)
 # ===========================================
 echo "Updating mirrors..."
-pacman -Sy --noconfirm reflector
-reflector --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+cat > /etc/pacman.d/mirrorlist << 'MIRRORS'
+Server = https://geo.mirror.pkgbuild.com/$repo/os/$arch
+Server = https://mirror.rackspace.com/archlinux/$repo/os/$arch
+Server = https://mirrors.kernel.org/archlinux/$repo/os/$arch
+Server = https://america.mirror.pkgbuild.com/$repo/os/$arch
+Server = https://mirror.leaseweb.net/archlinux/$repo/os/$arch
+MIRRORS
 echo "Mirrors updated:"
-head -5 /etc/pacman.d/mirrorlist
+cat /etc/pacman.d/mirrorlist
 
 # ===========================================
 # Install Base System
