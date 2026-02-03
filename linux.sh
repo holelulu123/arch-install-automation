@@ -243,20 +243,6 @@ mkdir -p $dir_boot
 mount $drive_part2 $dir_boot
 
 # ===========================================
-# Update Mirrors (use reliable mirrors)
-# ===========================================
-echo "Updating mirrors..."
-cat > /etc/pacman.d/mirrorlist << 'MIRRORS'
-Server = https://geo.mirror.pkgbuild.com/$repo/os/$arch
-Server = https://mirror.rackspace.com/archlinux/$repo/os/$arch
-Server = https://mirrors.kernel.org/archlinux/$repo/os/$arch
-Server = https://america.mirror.pkgbuild.com/$repo/os/$arch
-Server = https://mirror.leaseweb.net/archlinux/$repo/os/$arch
-MIRRORS
-echo "Mirrors updated:"
-cat /etc/pacman.d/mirrorlist
-
-# ===========================================
 # Install Base System
 # ===========================================
 pacstrap $dir_root linux linux-firmware base neovim iwd git base-devel go \
