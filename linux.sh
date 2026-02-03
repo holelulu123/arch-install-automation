@@ -245,7 +245,7 @@ mount $drive_part2 $dir_boot
 # ===========================================
 # Install Base System
 # ===========================================
-pacstrap $dir_root linux linux-firmware base neovim iwd git base-devel \
+pacstrap $dir_root linux linux-firmware base neovim iwd git base-devel go \
     xfce4 xfce4-goodies xorg-server xorg-xinit \
     lightdm lightdm-gtk-greeter \
     firefox \
@@ -278,6 +278,13 @@ genfstab -U $dir_root > $dir_root/etc/fstab
 cp "$dir_script/locale.gen" $dir_root/etc/
 echo LANG=en_US.UTF-8 > $dir_root/etc/locale.conf
 arch-chroot $dir_root locale-gen
+
+# ===========================================
+# Console Configuration (required for mkinitcpio sd-vconsole hook)
+# ===========================================
+cat > $dir_root/etc/vconsole.conf << EOF
+KEYMAP=us
+EOF
 
 # ===========================================
 # Time Configuration
@@ -416,12 +423,13 @@ mkdir -p $dir_root/etc/udev/rules.d
 ln -sf /dev/null $dir_root/etc/udev/rules.d/80-net-setup-link.rules
 
 # ===========================================
-# Copy Wallpaper (system-wide)
+# Copy Wallpaper (system-wide default)
 # ===========================================
-mkdir -p $dir_root/usr/share/backgrounds
-cp $dir_script/wallpapers/monterey.png $dir_root/usr/share/backgrounds/
-echo "Wallpaper copied:"
-ls -la $dir_root/usr/share/backgrounds/monterey.png
+# Copy as xfce-x.svg to override XFCE's hardcoded default wallpaper
+mkdir -p $dir_root/usr/share/backgrounds/xfce
+cp $dir_script/wallpapers/monterey.png $dir_root/usr/share/backgrounds/xfce/xfce-x.svg
+echo "Wallpaper copied as default:"
+ls -la $dir_root/usr/share/backgrounds/xfce/xfce-x.svg
 sync
 
 # ===========================================
@@ -449,15 +457,14 @@ fi
 sync
 
 # ===========================================
-# Install VS Code
+# Install VS Code (using user's setup script)
 # ===========================================
 echo "Installing VS Code..."
-arch-chroot $dir_root pacman -S --needed --noconfirm code
+arch-chroot $dir_root sudo -u $username /home/$username/vscode-config/scripts/setup.sh || true
+# Note: Extensions installation will fail in chroot (no display) - user can re-run after login
 echo "VS Code installed:"
 arch-chroot $dir_root pacman -Qi code | head -3
 sync
-# Note: VS Code config and setup scripts are in /etc/skel and were copied during user creation
-# User can run ~/vscode-config/scripts/setup.sh after login to install extensions
 
 # Copy verification script
 cp $dir_script/verify-install.sh $dir_root/home/$username/
