@@ -243,6 +243,15 @@ mkdir -p $dir_boot
 mount $drive_part2 $dir_boot
 
 # ===========================================
+# Update Mirrors (get fastest mirrors)
+# ===========================================
+echo "Updating mirrors..."
+pacman -Sy --noconfirm reflector
+reflector --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+echo "Mirrors updated:"
+head -5 /etc/pacman.d/mirrorlist
+
+# ===========================================
 # Install Base System
 # ===========================================
 pacstrap $dir_root linux linux-firmware base neovim iwd git base-devel go \
