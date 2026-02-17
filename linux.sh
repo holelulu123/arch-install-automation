@@ -286,10 +286,6 @@ pacstrap_retry "desktop" $dir_root \
 pacstrap_retry "browser" $dir_root \
     firefox
 
-# Audio stack
-pacstrap_retry "audio" $dir_root \
-    pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber
-
 # Fonts
 pacstrap_retry "fonts" $dir_root \
     ttf-fira-code ttf-liberation ttf-dejavu
@@ -381,6 +377,7 @@ sleep 3
 
 # Generate GRUB config
 echo "Generating GRUB config..."
+mkdir -p $dir_root/boot/grub
 arch-chroot $dir_root grub-mkconfig -o /boot/grub/grub.cfg
 
 # ===========================================
@@ -498,11 +495,11 @@ fi
 sync
 
 # ===========================================
-# Install VS Code (using user's setup script)
+# Install VS Code
 # ===========================================
 echo "Installing VS Code..."
-arch-chroot $dir_root sudo -u $username /home/$username/vscode-config/scripts/setup.sh || true
-# Note: Extensions installation will fail in chroot (no display) - user can re-run after login
+pacstrap_retry "vscode" $dir_root code
+# Note: Run ~/vscode-config/scripts/setup.sh after first login to install extensions
 echo "VS Code installed:"
 arch-chroot $dir_root pacman -Qi code | head -3
 sync
