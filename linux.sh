@@ -51,6 +51,14 @@ echo -e "${GREEN}Internet connection: OK${NC}"
 echo ""
 
 # ===========================================
+# Rank Mirrors for Fast Downloads
+# ===========================================
+echo -e "${BLUE}Ranking mirrors by download speed (this may take a moment)...${NC}"
+reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+echo -e "${GREEN}Mirrorlist updated with fastest mirrors.${NC}"
+echo ""
+
+# ===========================================
 # Interactive Drive Selection
 # ===========================================
 echo -e "${BOLD}${YELLOW}Available block devices:${NC}"
@@ -245,27 +253,60 @@ mount $drive_part2 $dir_boot
 # ===========================================
 # Install Base System
 # ===========================================
-pacstrap $dir_root linux linux-firmware base neovim iwd git base-devel go \
+pacstrap_retry() {
+    local label="$1"; shift
+    local max_attempts=3
+    local attempt=1
+    while [ $attempt -le $max_attempts ]; do
+        echo -e "${BLUE}[$label] pacstrap attempt $attempt of $max_attempts...${NC}"
+        if pacstrap "$@"; then
+            echo -e "${GREEN}[$label] Done.${NC}"
+            return 0
+        fi
+        echo -e "${YELLOW}[$label] Failed. Re-ranking mirrors and retrying...${NC}"
+        reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+        attempt=$((attempt + 1))
+        sleep 5
+    done
+    echo -e "${RED}[$label] Failed after $max_attempts attempts.${NC}"
+    return 1
+}
+
+# Base kernel + core tools
+pacstrap_retry "base" $dir_root \
+    linux linux-firmware base base-devel go \
+    iwd git neovim nano
+
+# Desktop environment + display manager
+pacstrap_retry "desktop" $dir_root \
     xfce4 xfce4-goodies xorg-server xorg-xinit \
-    lightdm lightdm-gtk-greeter \
-    firefox \
-    pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber \
-    ttf-fira-code ttf-liberation ttf-dejavu \
+    lightdm lightdm-gtk-greeter
+
+# Browser
+pacstrap_retry "browser" $dir_root \
+    firefox
+
+# Audio stack
+pacstrap_retry "audio" $dir_root \
+    pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber
+
+# Fonts
+pacstrap_retry "fonts" $dir_root \
+    ttf-fira-code ttf-liberation ttf-dejavu
+
+# File manager plugins + virtual filesystems
+pacstrap_retry "filemanager" $dir_root \
     thunar-archive-plugin thunar-media-tags-plugin file-roller \
-    gvfs gvfs-mtp \
+    gvfs gvfs-mtp
+
+# CLI utilities
+pacstrap_retry "cli-tools" $dir_root \
     htop btop \
     man-db man-pages \
-    openssh \
-    tmux \
-    zsh \
-    wget curl \
-    ripgrep fd \
+    openssh tmux zsh \
+    wget curl ripgrep fd \
     unzip zip p7zip \
-    tree \
-    rsync \
-    nload iotop \
-    usbutils \
-    nano
+    tree rsync nload iotop usbutils
 
 # Flush writes after large pacstrap
 sync
@@ -308,7 +349,7 @@ echo "root:$root_password" | arch-chroot $dir_root chpasswd
 # ===========================================
 # GRUB - Bootloader (BIOS + UEFI)
 # ===========================================
-pacstrap $dir_root grub efibootmgr
+pacstrap_retry "bootloader" $dir_root grub efibootmgr
 
 # Ensure all pending writes are flushed
 sync
@@ -394,7 +435,7 @@ echo "$username:$user_password" | arch-chroot $dir_root chpasswd
 arch-chroot $dir_root groupadd -f wheel
 arch-chroot $dir_root usermod -aG wheel "$username"
 
-pacstrap $dir_root sudo
+pacstrap_retry "sudo" $dir_root sudo
 cp "$dir_script/10-sudo" $dir_root/etc/sudoers.d/
 chmod 440 $dir_root/etc/sudoers.d/10-sudo
 echo "Sudoers file:"
@@ -405,12 +446,12 @@ sync
 arch-chroot $dir_root groupadd -f sudo
 arch-chroot $dir_root usermod -aG sudo "$username"
 
-pacstrap $dir_root polkit
+pacstrap_retry "polkit" $dir_root polkit
 
 # ===========================================
 # Microcode
 # ===========================================
-pacstrap $dir_root amd-ucode intel-ucode
+pacstrap_retry "microcode" $dir_root amd-ucode intel-ucode
 arch-chroot $dir_root mkinitcpio -P
 
 # Regenerate GRUB config to include microcode
